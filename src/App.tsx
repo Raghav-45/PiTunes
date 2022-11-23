@@ -8,10 +8,11 @@ import DailyMix2 from './assets/DailyMix1.jfif'
 import DailyMix3 from './assets/DailyMix1.jfif'
 import DailyMix4 from './assets/DailyMix1.jfif'
 import DailyMix5 from './assets/DailyMix1.jfif'
+import TestAudio from './assets/TestAudio.mp3'
 import './App.css'
 
 import { AiFillHome, AiFillHeart, AiOutlineArrowDown } from "react-icons/ai"
-import { FaPlay } from "react-icons/fa"
+import { FaPlay, FaPause } from "react-icons/fa"
 import { BiSearchAlt, BiLibrary, BiShuffle } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowDown, MdDevicesOther } from "react-icons/md"
@@ -35,7 +36,18 @@ function App() {
       .then((res) => {console.log(res); setHomepageData(res); setLoading(false);})
   }, [])
 
+  // var currentAudio = new Audio(song)
+  const [CurrentAudio, setCurrentAudio] = useState(undefined)
+  function giveAudio(song) {
+    var audio = new Audio(song)
+    return audio
+  }
+  function controlAudio(audio) {
+    IsPlaying ? audio.pause() : audio.play()
+  }
+
   const [ShowDropdown, setShowDropdown] = useState(false)
+  const [IsPlaying, setIsPlaying] = useState(false)
   const data = {
     pages: [
       {id: 'home', name: 'Home', icon: ''},
@@ -66,6 +78,7 @@ function App() {
       {src: DailyMix4, title: 'Daily Mix 4', artist: 'By Spotify'},
       {src: DailyMix5, title: 'Daily Mix 5', artist: 'By Spotify'},
     ],
+    play: true
   }
 
   if (Loading) {return (<div> loading </div>)} else { return (
@@ -221,8 +234,8 @@ function App() {
 
         </div>
       </div>
-      <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light'>
-        <div className="flex items-center">
+      <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light border-t border-dark'>
+        <div className="flex items-center w-1/4">
           <div>
             <h1 className='text-sm text-white tracking-wide'>No Loss</h1>
             <h2 className='text-xs text-lightest tracking-wide'>King</h2>
@@ -230,22 +243,24 @@ function App() {
           <AiFillHeart className='text-xl text-green mx-4'/>
           <RiPictureInPictureFill className='text-xl text-lightest hover:text-white'/>
         </div>
-        <div className='flex flex-col justify-center w-1/2 items-center'>
+        <div className='flex flex-col justify-center w-2/4 items-center'>
           <div className='flex items-center'>
             <button className='text-lg mx-5 text-lightest hover:text-white'><BiShuffle/></button>
             <button className='text-lightest hover:text-white'><BsFillSkipStartFill className='text-lg'/></button>
-            <button className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'><FaPlay/></button>
+            <button onClick={() => {controlAudio(giveAudio(TestAudio)); setIsPlaying(!IsPlaying);}} className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'>{IsPlaying ? <FaPause/> : <FaPlay/>}</button>
             <button className='text-lightest hover:text-white'><BsFillSkipEndFill className='text-lg'/></button>
             <button className='text-lg mx-5 text-lightest hover:text-white'><FiRepeat/></button>
           </div>
-          <div className='w-full'>
-            <div className="w-full h-1 bg-lightest rounded-full mt-4 flex items-center">
+          <div className='w-3/4 flex items-center justify-center mt-3'>
+            <p className='text-xs text-lightest mr-1'>0:28</p>
+            <div className="w-full h-1 bg-lightest rounded-full flex items-center">
               <div className='h-1 rounded-full bg-green w-[18%]'></div>
-              <div className='h-2 w-2 bg-white rounded-full'></div>
+              <div className='h-3 w-3 bg-white rounded-full ml-1 shadow'></div>
             </div>
+            <p className='text-xs text-lightest ml-1'>2:40</p>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center w-1/4 justify-end">
           <RiPlayListFill className='text-lightest hover:text-white'/>
           <MdDevicesOther className='text-xl text-lightest mx-3 hover:text-white'/>
           <HiVolumeUp className='text-xl text-lightest hover:text-white'/>
