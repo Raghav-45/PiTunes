@@ -14,6 +14,7 @@ import { FaPlay } from "react-icons/fa"
 import { BiSearchAlt, BiLibrary } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md"
+import { RiPictureInPictureFill } from "react-icons/ri"
 import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io"
 
 function App() {
@@ -177,8 +178,15 @@ function App() {
           </div>
         </div>
       </div>
-      <div className='w-full h-[12vh] bg-light'>
-
+      <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light'>
+        <div className="flex items-center">
+          <div>
+            <h1 className='text-sm text-white tracking-wide'>No Loss</h1>
+            <h2 className='text-xs text-lightest tracking-wide'>King</h2>
+          </div>
+          <AiFillHeart className='text-green mx-4'/>
+          <RiPictureInPictureFill className='text-lightest'/>
+        </div>
       </div>
     </div>
   )
