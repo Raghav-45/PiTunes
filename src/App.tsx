@@ -1,23 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import SpotifyLogo from './assets/Spotify_Logo_RGB_Green.png'
 import NoLoss from './assets/NoLoss.jfif'
-import IronManLogo from './assets/IronManLogo.jpg'
+import ProfilePic from './assets/unnamed.jpg'
 import DailyMix1 from './assets/DailyMix1.jfif'
 import DailyMix2 from './assets/DailyMix1.jfif'
 import DailyMix3 from './assets/DailyMix1.jfif'
 import DailyMix4 from './assets/DailyMix1.jfif'
 import DailyMix5 from './assets/DailyMix1.jfif'
 import './App.css'
+
 import { AiFillHome, AiFillHeart, AiOutlineArrowDown } from "react-icons/ai"
 import { FaPlay } from "react-icons/fa"
-import { BiSearchAlt, BiLibrary } from "react-icons/bi"
+import { BiSearchAlt, BiLibrary, BiShuffle } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md"
-import { RiPictureInPictureFill } from "react-icons/ri"
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowDown, MdDevicesOther } from "react-icons/md"
+import { RiPictureInPictureFill, RiPlayListFill } from "react-icons/ri"
 import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io"
+import { HiVolumeUp } from "react-icons/hi"
+import { BsFillSkipStartFill, BsFillSkipEndFill } from "react-icons/bs"
+import { FiRepeat } from "react-icons/fi"
+
+import axios from "axios"
+
+import { MusicGroup } from './components/Group'
 
 function App() {
+  const url = "http://127.0.0.1:3000/home"
+  const [HomepageData, setHomepageData] = useState({})
+  const [Loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    axios.get(url)
+      .then((res) => {console.log(res); setHomepageData(res); setLoading(false);})
+  }, [])
+
   const [ShowDropdown, setShowDropdown] = useState(false)
   const data = {
     pages: [
@@ -51,7 +68,7 @@ function App() {
     ],
   }
 
-  return (
+  if (Loading) {return (<div> loading </div>)} else { return (
     <div className='bg-dark h-screen'>
       <div className='flex h-[88vh]'>
         <div className='w-56 bg-black h-full flex-none'>
@@ -120,7 +137,7 @@ function App() {
             </div>
             <div className='relative'>
               <button onClick={() => setShowDropdown(!ShowDropdown)} className='focus:outline-none bg-light rounded-full py-1 px-2 flex items-center'>
-                <img src={IronManLogo} className='rounded-full h-6 w-6 mr-2'></img>
+                <img src={ProfilePic} className='rounded-full h-6 w-6 mr-2'></img>
                 <p className='text-white font-semibold text-xs mr-3'>Raghav</p>
                 {ShowDropdown ? <IoMdArrowDropup className='text-white'/> : <IoMdArrowDropdown className='text-white'/>}
               </button>
@@ -132,6 +149,7 @@ function App() {
               }
             </div>
           </div>
+
           <div className='px-6 py-3'>
             <div className='flex items-center justify-between'>
               <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Recently Played</h1>
@@ -146,14 +164,38 @@ function App() {
                       </div>
                     </div>
                     <div className="bg-light w-full h-auto p-5 rounded-lg shadow-md">
-                      <img src={elem.src} className='h-auto w-full shadow mb-2' />
-                      <h1 className='text-sm font-semibold text-white tracking wide'>{elem.title}</h1>
+                      <img src={elem.src} className='h-auto w-full shadow mb-2 rounded-sm' />
+                      <h1 className='text-sm font-semibold text-white tracking wide whitespace-nowrap overflow-x-hidden text-ellipsis'>{elem.title}</h1>
                       <h2 className='text-xs text-lightest tracking-wide pb-5'>{elem.artist}</h2>
                     </div>
                   </div>
                 ))}
             </div>
           </div>
+
+          {/* <div className='px-6 py-3'>
+            <div className='flex items-center justify-between'>
+              <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Recently Played</h1>
+              <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
+            </div>
+              <div className='w-full flex flex-wrap'>
+                {HomepageData.data.results.new_trending.map((elem) => (
+                  <div className="p-2 w-48 relative">
+                    <div className="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                      <div className='bg-green rounded-full h-10 w-10 flex items-center justify-center'>
+                        <FaPlay className='text-white text-1xl'/>
+                      </div>
+                    </div>
+                    <div className="bg-light w-full h-auto p-5 rounded-lg shadow-md">
+                      <img src={elem.image} className='h-auto w-full shadow mb-2 rounded-sm' />
+                      <h1 className='text-sm font-semibold text-white tracking wide whitespace-nowrap overflow-x-hidden text-ellipsis'>{elem.title}</h1>
+                      <h2 className='text-xs text-lightest tracking-wide pb-5'>{elem.type}</h2>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div> */}
+
           <div className='px-6 py-3'>
             <div className='pl-2'>
               <h1 className='text-2xl font-semibold text-white tracking-wider hover:underline'>Made for Raghav</h1>
@@ -168,14 +210,15 @@ function App() {
                       </div>
                     </div>
                     <div className="bg-light w-full h-auto p-5 rounded-lg shadow-md">
-                      <img src={elem.src} className='h-auto w-full shadow mb-2' />
-                      <h1 className='text-sm font-semibold text-white tracking wide'>{elem.title}</h1>
+                      <img src={elem.src} className='h-auto w-full shadow mb-2 rounded-sm' />
+                      <h1 className='text-sm font-semibold text-white tracking wide whitespace-nowrap overflow-x-hidden text-ellipsis'>{elem.title}</h1>
                       <h2 className='text-xs text-lightest tracking-wide pb-5'>{elem.artist}</h2>
                     </div>
                   </div>
                 ))}
             </div>
           </div>
+
         </div>
       </div>
       <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light'>
@@ -184,12 +227,33 @@ function App() {
             <h1 className='text-sm text-white tracking-wide'>No Loss</h1>
             <h2 className='text-xs text-lightest tracking-wide'>King</h2>
           </div>
-          <AiFillHeart className='text-green mx-4'/>
-          <RiPictureInPictureFill className='text-lightest'/>
+          <AiFillHeart className='text-xl text-green mx-4'/>
+          <RiPictureInPictureFill className='text-xl text-lightest hover:text-white'/>
+        </div>
+        <div className='flex flex-col justify-center w-1/2 items-center'>
+          <div className='flex items-center'>
+            <button className='text-lg mx-5 text-lightest hover:text-white'><BiShuffle/></button>
+            <button className='text-lightest hover:text-white'><BsFillSkipStartFill className='text-lg'/></button>
+            <button className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'><FaPlay/></button>
+            <button className='text-lightest hover:text-white'><BsFillSkipEndFill className='text-lg'/></button>
+            <button className='text-lg mx-5 text-lightest hover:text-white'><FiRepeat/></button>
+          </div>
+          <div className='w-full'>
+            <div className="w-full h-1 bg-lightest rounded-full mt-4 flex items-center">
+              <div className='h-1 rounded-full bg-green w-[18%]'></div>
+              <div className='h-2 w-2 bg-white rounded-full'></div>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center">
+          <RiPlayListFill className='text-lightest hover:text-white'/>
+          <MdDevicesOther className='text-xl text-lightest mx-3 hover:text-white'/>
+          <HiVolumeUp className='text-xl text-lightest hover:text-white'/>
+          <div className='w-20 ml-1 bg-lightest rounded-full h-1'></div>
         </div>
       </div>
     </div>
-  )
+  )}
 }
 
 export default App
