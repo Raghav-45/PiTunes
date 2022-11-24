@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* width */
+/* .musicCard:hover .playButton {
+  opacity: 100%;
+} */
+
 ::-webkit-scrollbar {
   /* transition: all .3s ease; */
   width: 5px;
