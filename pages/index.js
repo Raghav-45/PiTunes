@@ -189,8 +189,8 @@ export default function Home() {
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
               <div className='w-full flex flex-wrap'>
-                {data.recents.map((elem) => (
-                  <div key={elem.key} className="group p-2 w-48 relative">
+                {data.recents.map((elem, index) => (
+                  <div key={elem.key + index} className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
                       {/* <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'> */}
                       <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
@@ -207,14 +207,14 @@ export default function Home() {
               </div>
             </div>
 
-            <div className='px-6 py-3'>
+            {/* <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
                 <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Suggested artists</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
               <div className='w-full flex flex-wrap'>
-                {HomepageData.data.results.artist_recos.slice(0, HomepageData.data.results.artist_recos.length).reverse().slice(0, 7).map((elem) => (
-                  <div key={elem.id} className="group p-2 w-48 relative">
+                {HomepageData.data.results.artist_recos.slice(0, HomepageData.data.results.artist_recos.length).reverse().slice(0, 7).map((elem, index) => (
+                  <div key={elem.id + index} className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
                       <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-full'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
@@ -228,16 +228,16 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
-            <div className='px-6 py-3'>
+            {/* <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
                 <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Radios</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
               <div className='w-full flex flex-wrap'>
-                {HomepageData.data.results.radio.slice(0, 7).map((elem) => (
-                  <div key={elem.id} className="group p-2 w-48 relative">
+                {HomepageData.data.results.radio.slice(0, 7).map((elem, index) => (
+                  <div key={elem.id + index} className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
                       <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-full'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
@@ -251,7 +251,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className='px-6 py-3'>
               <div className='pl-2'>
@@ -259,8 +259,8 @@ export default function Home() {
                 <h2 className=' text-lightest'>Get better recommendations the more you listen.</h2>
               </div>
               <div className='w-full flex flex-wrap'>
-                {data.customs.map((elem) => (
-                  <div key={elem.key} className="group p-2 w-48 relative">
+                {data.customs.map((elem, index) => (
+                  <div key={elem.key + index} className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
                       <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
