@@ -34,12 +34,12 @@ export default function Home() {
 
   // var currentAudio = new Audio(song)
   const [CurrentAudio, setCurrentAudio] = useState(undefined)
-  function setAudio() {
-    var audio = new Audio(TestAudio)
-    setCurrentAudio(audio)
+  function giveAudio(song) {
+    var audio = new Audio(song)
+    return audio
   }
-  function controlAudio() {
-    IsPlaying ? CurrentAudio.pause() : CurrentAudio.play()
+  function controlAudio(audio) {
+    IsPlaying ? audio.pause() : audio.play()
   }
 
   const [ShowDropdown, setShowDropdown] = useState(false)
@@ -61,26 +61,23 @@ export default function Home() {
     ],
     showDropdown: false,
     recents: [
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 1', artist: 'By Spotify', key: 'spotify1'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 2', artist: 'By Spotify', key: 'spotify2'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 3', artist: 'By Spotify', key: 'spotify3'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 4', artist: 'By Spotify', key: 'spotify4'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 5', artist: 'By Spotify', key: 'spotify5'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 1', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 2', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 3', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 4', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 5', artist: 'By Spotify'},
     ],
     customs: [
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 1', artist: 'By Spotify', key: 'anotherspotify1'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 2', artist: 'By Spotify', key: 'anotherspotify2'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 3', artist: 'By Spotify', key: 'anotherspotify3'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 4', artist: 'By Spotify', key: 'anotherspotify4'},
-      {src: '/assets/DailyMix1.png', title: 'Daily Mix 5', artist: 'By Spotify', key: 'anotherspotify5'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 1', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 2', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 3', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 4', artist: 'By Spotify'},
+      {src: '/assets/DailyMix1.png', title: 'Daily Mix 5', artist: 'By Spotify'},
     ],
-    play: true,
-    Playback: {
-      Music: {src: '', title: 'No Loss', artist: 'King'}
-    }
+    play: true
   }
 
-  const SpotifyLogo = '/assets/Spotify_Logo_RGB_White.png'
+  const SpotifyLogo = '/assets/Spotify_Logo_RGB_Green.png'
   const NoLoss = '/assets/NoLoss.png'
   const ProfilePic = '/assets/unnamed.jpg'
   const DailyMix1 = '/assets/DailyMix1.png'
@@ -104,7 +101,7 @@ export default function Home() {
         <div className='flex h-[88vh]'>
           <div className='w-56 bg-black h-full flex-none'>
             <div className='p-6'>
-              <img className='h-10' alt="Girl in a jacket" src={SpotifyLogo}></img>
+              <img className='h-10' alt="Girl in a jacket" src={SpotifyLogo} Style='filter: brightness(0) invert(1);' ></img>
             </div>
             <div className="mx-2 mb-5">
               <button className='w-full font-semibold focus:outline-none text-sm rounded px-3 py-2 flex items-center justify-start text-white hover:bg-light'>
@@ -188,12 +185,11 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-wrap'>
                 {data.recents.map((elem) => (
-                  <div key={elem.key} className="group p-2 w-48 relative">
+                  <div className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
-                      {/* <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'> */}
-                      <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
+                      <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
-                          <button onClick={() => {setAudio();}}><FaPlay className='text-white text-1xl'/></button>
+                          <button><FaPlay className='text-white text-1xl'/></button>
                         </div>
                         <img src={elem.src} className='h-full w-full rounded-md' />
                       </div>
@@ -212,9 +208,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-wrap'>
                 {HomepageData.data.results.artist_recos.slice(0, HomepageData.data.results.artist_recos.length).reverse().slice(0, 7).map((elem) => (
-                  <div key={elem.id} className="group p-2 w-48 relative">
+                  <div className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
-                      <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-full'>
+                      <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-full'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
                           <button><FaPlay className='text-white text-1xl'/></button>
                         </div>
@@ -235,9 +231,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-wrap'>
                 {HomepageData.data.results.radio.slice(0, 7).map((elem) => (
-                  <div key={elem.id} className="group p-2 w-48 relative">
+                  <div className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
-                      <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-full'>
+                      <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-full'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
                           <button><FaPlay className='text-white text-1xl'/></button>
                         </div>
@@ -258,9 +254,9 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-wrap'>
                 {data.customs.map((elem) => (
-                  <div key={elem.key} className="group p-2 w-48 relative">
+                  <div className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
-                      <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
+                      <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
                           <button><FaPlay className='text-white text-1xl'/></button>
                         </div>
@@ -279,8 +275,8 @@ export default function Home() {
         <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light border-t border-dark'>
           <div className="flex items-center w-1/4">
             <div>
-              <h1 className='text-sm text-white tracking-wide'>{data.Playback.Music.title}</h1>
-              <h2 className='text-xs text-lightest tracking-wide'>{data.Playback.Music.artist}</h2>
+              <h1 className='text-sm text-white tracking-wide'>No Loss</h1>
+              <h2 className='text-xs text-lightest tracking-wide'>King</h2>
             </div>
             <AiFillHeart className='text-xl text-green mx-4'/>
             <RiPictureInPictureFill className='text-xl text-lightest hover:text-white'/>
@@ -289,7 +285,7 @@ export default function Home() {
             <div className='flex items-center'>
               <button className='text-lg mx-5 text-lightest hover:text-white'><BiShuffle/></button>
               <button className='text-lightest hover:text-white'><BsFillSkipStartFill className='text-lg'/></button>
-              <button onClick={() => {setIsPlaying(!IsPlaying); controlAudio();}} className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'>{IsPlaying ? <FaPause/> : <FaPlay/>}</button>
+              <button onClick={() => {controlAudio(giveAudio(TestAudio)); setIsPlaying(!IsPlaying);}} className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'>{IsPlaying ? <FaPause/> : <FaPlay/>}</button>
               <button className='text-lightest hover:text-white'><BsFillSkipEndFill className='text-lg'/></button>
               <button className='text-lg mx-5 text-lightest hover:text-white'><FiRepeat/></button>
             </div>
@@ -297,7 +293,7 @@ export default function Home() {
               <p className='text-xs text-lightest mr-1'>0:28</p>
               <div className="w-full h-1 bg-lightest rounded-full flex items-center">
                 <div className='h-1 rounded-full bg-green w-[18%]'></div>
-                <div className='h-4 w-4 bg-white rounded-full ml-1 -translate-x-3 shadow'></div>
+                <div className='h-3 w-3 bg-white rounded-full ml-1 shadow'></div>
               </div>
               <p className='text-xs text-lightest ml-1'>2:40</p>
             </div>
