@@ -34,13 +34,39 @@ export default function Home() {
   }, [])
 
   // var currentAudio = new Audio(song)
-  const [CurrentAudio, setCurrentAudio] = useState(undefined)
+  const [CurrentAudio, setCurrentAudio] = useState(typeof Audio !== "undefined" && new Audio("https://aac.saavncdn.com/459/b1b2eca1741fbdc13eead21e6978ec33_320.mp4"))
+  // const tiyt = new Audio("https://aac.saavncdn.com/459/b1b2eca1741fbdc13eead21e6978ec33_320.mp4")
+  // setCurrentAudio(tiyt)
+  
   function setAudio(req_audio) {
     var audio = new Audio(req_audio)
     setCurrentAudio(audio)
   }
   function controlAudio() {
     IsPlaying ? CurrentAudio.pause() : CurrentAudio.play()
+  }
+  function getDuration() {
+    return fancyTimeFormat(CurrentAudio.duration)
+  }
+  function getCurrentTime() {
+    return fancyTimeFormat(CurrentAudio.currentTime)
+  }
+  function fancyTimeFormat(duration) {
+    // Hours, minutes and seconds
+    var hrs = ~~(duration / 3600)
+    var mins = ~~((duration % 3600) / 60)
+    var secs = ~~duration % 60
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = ""
+
+    if (hrs > 0) {
+      ret += "" + hrs + ":" + (mins < 10 ? "0" : "")
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
   }
 
   const [ShowDropdown, setShowDropdown] = useState(false)
@@ -319,12 +345,12 @@ export default function Home() {
               <button className='text-lg mx-5 text-lightest hover:text-white'><FiRepeat/></button>
             </div>
             <div className='w-3/4 flex items-center justify-center mt-3'>
-              <p className='text-xs text-lightest mr-1'>0:28</p>
+              <p className='text-xs text-lightest mr-1'>{getCurrentTime()}</p>
               <div className="w-full h-1 bg-lightest rounded-full flex items-center">
                 <div className='h-1 rounded-full bg-green w-[18%]'></div>
                 <div className='h-4 w-4 bg-white rounded-full ml-1 -translate-x-3 shadow'></div>
               </div>
-              <p className='text-xs text-lightest ml-1'>2:40</p>
+              <p className='text-xs text-lightest ml-1'>{getDuration()}</p>
             </div>
           </div>
           <div className="flex items-center w-1/4 justify-end">
