@@ -151,7 +151,6 @@ export default function Home() {
                 </div>
               </div>
               <img src={NoLoss} />
-              {/* <Image src='/assets/NoLoss.png' width='500' height='500' /> */}
             </div>
           </div>
           <div className='w-full h-full relative overflow-y-scroll'>
