@@ -238,7 +238,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <MusicPlayback SongName='Song ka Naam' ArtistName='Artist Ka Naam'/>
+        <MusicPlayback SongName='Name of Song' ArtistName='Name of the Artist'/>
       </div>
       {/* </main> */}
     </div>
