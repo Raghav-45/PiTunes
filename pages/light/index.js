@@ -9,7 +9,7 @@ import { AiFillHome, AiFillHeart, AiOutlineArrowDown } from "react-icons/ai"
 import { FaPlay, FaPause } from "react-icons/fa"
 import { BiSearchAlt, BiLibrary, BiShuffle } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowDown, MdDevicesOther } from "react-icons/md"
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowUp, MdKeyboardArrowDown, MdDevicesOther } from "react-icons/md"
 import { RiPictureInPictureFill, RiPlayListFill } from "react-icons/ri"
 import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io"
 import { HiVolumeUp } from "react-icons/hi"
@@ -134,7 +134,7 @@ export default function Home() {
               <img className='h-10' alt="Girl in a jacket" src={SpotifyLogo}></img>
             </div>
             <div className="mx-2 mb-5">
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 hover:text-green-500 hover:bg-white'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 text-green-500 bg-white shadow-md'>
                 <i className='material-icons'> <AiFillHome className='h-4 w-4 mr-3'/> </i>
                 <p>Home</p>
               </button>
@@ -185,24 +185,25 @@ export default function Home() {
           </div>
           <div className='w-full h-full relative overflow-y-scroll'>
             <div className='w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-white/80 z-10'>
-              <div className="flex items-center">
-                <button className='rounded-full bg-black w-8 h-8 text-white mr-3'>
+              <div className="flex h-8 w-20 items-center justify-between">
+                <button className='rounded-full bg-gray-100 w-8 h-8 text-gray-500 opacity-50'>
                   <MdKeyboardArrowLeft className='text-3xl'/>
                 </button>
-                <button className='rounded-full bg-black w-8 h-8 text-white'>
+                <button className='rounded-full bg-gray-100 w-8 h-8 text-gray-500'>
                   <MdKeyboardArrowRight className='text-3xl'/>
                 </button>
               </div>
               <div className='relative'>
-                <button onClick={() => setShowDropdown(!ShowDropdown)} className='focus:outline-none bg-light rounded-full py-1 px-2 flex items-center'>
+                <button onClick={() => setShowDropdown(!ShowDropdown)} className='focus:outline-none bg-gray-100 rounded-full h-auto py-1 px-1 w-auto flex items-center'>
                   <img src={ProfilePic} className='rounded-full h-6 w-6 mr-2'></img>
-                  <p className='text-white font-semibold text-xs mr-3'>Raghav</p>
-                  {ShowDropdown ? <IoMdArrowDropup className='text-white'/> : <IoMdArrowDropdown className='text-white'/>}
+                  <p className='text-gray-900 font-semibold text-xs mr-2'>Raghav</p>
+                  {ShowDropdown ? <MdKeyboardArrowUp className='text-gray-900'/> : <MdKeyboardArrowDown className='text-gray-900'/>}
                 </button>
+
                 {ShowDropdown && 
-                  <div onClick={() => setShowDropdown(false)} className="absolute bg-light w-full rounded mt-1">
-                    <button onClick={() => setShowDropdown(false)} className='focus:outline-none w-full text-sm py-2 hover text-white border-b border-lightest opacity-75 hover:opacity-100'>Account</button>
-                    <button onClick={() => setShowDropdown(false)} className='focus:outline-none w-full text-sm py-2 hover text-white border-b border-lightest opacity-75 hover:opacity-100'>Log Out</button>
+                  <div onClick={() => setShowDropdown(false)} className="absolute bg-gray-100 w-full rounded mt-1">
+                    <button onClick={() => setShowDropdown(false)} className='focus:outline-none w-full text-sm py-2 hover text-gray-900 opacity-75 hover:opacity-100'>Account</button>
+                    <button onClick={() => setShowDropdown(false)} className='focus:outline-none w-full text-sm py-2 hover text-gray-900 opacity-75 hover:opacity-100'>Log Out</button>
                   </div>
                 }
               </div>
@@ -210,7 +211,7 @@ export default function Home() {
 
             <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
-                <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Recently Played</h1>
+                <h1 className='pl-2 text-2xl font-semibold text-gray-900 tracking-wider hover:underline'>Recently Played</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
               <div className='w-full flex flex-wrap'>
@@ -234,7 +235,7 @@ export default function Home() {
 
             <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
-                <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Suggested artists</h1>
+                <h1 className='pl-2 text-2xl font-semibold text-gray-900 tracking-wider hover:underline'>Suggested artists</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
               <div className='w-full flex flex-wrap'>
@@ -257,7 +258,7 @@ export default function Home() {
 
             <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
-                <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Radios</h1>
+                <h1 className='pl-2 text-2xl font-semibold text-gray-900 tracking-wider hover:underline'>Radios</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
               <div className='w-full flex flex-wrap'>
@@ -280,7 +281,7 @@ export default function Home() {
 
             <div className='px-6 py-3'>
               <div className='pl-2'>
-                <h1 className='text-2xl font-semibold text-white tracking-wider hover:underline'>Made for Raghav</h1>
+                <h1 className='text-2xl font-semibold text-gray-900 tracking-wider hover:underline'>Made for Raghav</h1>
                 <h2 className=' text-lightest'>Get better recommendations the more you listen.</h2>
               </div>
               <div className='w-full flex flex-wrap'>

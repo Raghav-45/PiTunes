@@ -199,6 +199,7 @@ export default function Home() {
                   <p className='text-white font-semibold text-xs mr-3'>Raghav</p>
                   {ShowDropdown ? <IoMdArrowDropup className='text-white'/> : <IoMdArrowDropdown className='text-white'/>}
                 </button>
+
                 {ShowDropdown && 
                   <div onClick={() => setShowDropdown(false)} className="absolute bg-light w-full rounded mt-1">
                     <button onClick={() => setShowDropdown(false)} className='focus:outline-none w-full text-sm py-2 hover text-white border-b border-lightest opacity-75 hover:opacity-100'>Account</button>
