@@ -18,7 +18,8 @@ import { FiRepeat } from "react-icons/fi"
 
 import SideBar from '../components/SideNavBar'
 import TopBar from '../components/TopBar'
-import { MusicSection } from '../components/MusicSection'
+import { MusicCard } from '../components/cards/Music'
+import { MusicPlayback } from '../components/MusicPlayback'
 
 export default function Home() {
   const url = "https://jiosaavn-api.raghavbhai4545.repl.co/home"
@@ -131,7 +132,6 @@ export default function Home() {
           <SideBar/>
           <div className='w-full h-full relative overflow-y-scroll'>
             <TopBar/>
-            <MusicSection Data={data.recents}/>
             <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
                 <h1 className='pl-2 text-2xl font-semibold text-gray-900 dark:text-white tracking-wider hover:underline'>Recently Played</h1>
@@ -232,58 +232,13 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-wrap'>
                 {JB_Purpose.results.songs.map((elem) => (
-                  <div key={elem.id} className="group p-2 w-48 relative">
-                    <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
-                      {/* <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'> */}
-                      <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
-                        <div className='absolute playButton bg-green-500 rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
-                          <button onClick={() => {setAudio(elem.downloadUrl[elem.downloadUrl.length-1].link);}}><FaPlay className='text-white text-1xl'/></button>
-                        </div>
-                        <img src={elem.image[1].link} className='h-full w-full rounded-md' />
-                      </div>
-                      <h1 className='text-sm font-semibold text-white tracking wide whitespace-nowrap overflow-x-hidden text-ellipsis'>{elem.name}</h1>
-                      <h2 className='text-xs text-lightest tracking-wide pb-5'>{elem.artist}</h2>
-                    </div>
-                  </div>
+                  <MusicCard Data={elem}/>
                 ))}
               </div>
             </div>
-
           </div>
         </div>
-        <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light border-t border-dark'>
-          <div className="flex items-center w-1/4">
-            <div>
-              <h1 className='text-sm text-white tracking-wide'>{data.Playback.Music.title}</h1>
-              <h2 className='text-xs text-lightest tracking-wide'>{data.Playback.Music.artist}</h2>
-            </div>
-            <AiFillHeart className='text-xl text-green mx-4'/>
-            <RiPictureInPictureFill className='text-xl text-lightest hover:text-white'/>
-          </div>
-          <div className='flex flex-col justify-center w-2/4 items-center'>
-            <div className='flex items-center'>
-              <button className='text-lg mx-5 text-lightest hover:text-white'><BiShuffle/></button>
-              <button className='text-lightest hover:text-white'><BsFillSkipStartFill className='text-lg'/></button>
-              <button onClick={() => {setIsPlaying(!IsPlaying); controlAudio();}} className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'>{IsPlaying ? <FaPause/> : <FaPlay/>}</button>
-              <button className='text-lightest hover:text-white'><BsFillSkipEndFill className='text-lg'/></button>
-              <button className='text-lg mx-5 text-lightest hover:text-white'><FiRepeat/></button>
-            </div>
-            <div className='w-3/4 flex items-center justify-center mt-3'>
-              <p className='text-xs text-lightest mr-1'>{getCurrentTime()}</p>
-              <div className="w-full h-1 bg-lightest rounded-full flex items-center">
-                <div className='h-1 rounded-full bg-green w-[18%]'></div>
-                <div className='h-4 w-4 bg-white rounded-full ml-1 -translate-x-3 shadow'></div>
-              </div>
-              <p className='text-xs text-lightest ml-1'>{getDuration()}</p>
-            </div>
-          </div>
-          <div className="flex items-center w-1/4 justify-end">
-            <RiPlayListFill className='text-lightest hover:text-white'/>
-            <MdDevicesOther className='text-xl text-lightest mx-3 hover:text-white'/>
-            <HiVolumeUp className='text-xl text-lightest hover:text-white'/>
-            <div className='w-20 ml-1 bg-lightest rounded-full h-1'></div>
-          </div>
-        </div>
+        <MusicPlayback SongName='Song ka Naam' ArtistName='Artist Ka Naam'/>
       </div>
       {/* </main> */}
     </div>
