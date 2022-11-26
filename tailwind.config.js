@@ -11,7 +11,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        'green': '#1DB954',
+        // 'green': '#1DB954',
         'dark': '#121212',
         'Darkest': '#191414',
         'light': '#282828',
