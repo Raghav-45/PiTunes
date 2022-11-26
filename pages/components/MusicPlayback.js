@@ -26,13 +26,15 @@ export const MusicPlayback = React.forwardRef((props) => {
       </div>
       <div className='flex flex-col justify-center w-2/4 items-center'>
         <div className='flex items-center'>
-          <button className='text-lg mx-5 text-lightest hover:text-white'><BiShuffle/></button>
-          <button className='text-lightest hover:text-white'><BsFillSkipStartFill className='text-lg'/></button>
+          <button className='text-lg mx-3 text-lightest hover:text-white'><BiShuffle/></button>
+          <button className='text-lightest mx-3 hover:text-white'><BsFillSkipStartFill className='text-2xl'/></button>
           {/* <button onClick={() => {setIsPlaying(!IsPlaying); controlAudio();}} className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'>{IsPlaying ? <FaPause/> : <FaPlay/>}</button> */}
-          <button className='text-lightest hover:text-white'><BsFillSkipEndFill className='text-lg'/></button>
-          <button className='text-lg mx-5 text-lightest hover:text-white'><FiRepeat/></button>
+          {/* <button className='rounded-full h-8 w-8 flex items-center justify-center mx-5 border-lightest border text-lightest hover:text-white'><FaPlay/></button> */}
+          <div className='bg-green-500 rounded-full h-9 w-9 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-100'><FaPlay className='text-white text-sm'/></div>
+          <button className='text-lightest mx-3 hover:text-white'><BsFillSkipEndFill className='text-2xl'/></button>
+          <button className='text-lg mx-3 text-lightest hover:text-white'><FiRepeat/></button>
         </div>
-        <div className='w-3/4 flex items-center justify-center mt-3'>
+        <div className='w-3/4 flex items-center justify-center mt-1'>
           {/* <p className='text-xs text-lightest mr-1'>{getCurrentTime()}</p> */}
           <p className='text-xs text-lightest mr-1'>00:00</p>
           <div className="w-full h-1 bg-lightest rounded-full flex items-center">
