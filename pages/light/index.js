@@ -127,22 +127,22 @@ export default function Home() {
       </Head>
 
       {/* <main className={styles.main}> */}
-      <div className='bg-dark h-screen'>
+      <div className='bg-white h-screen'>
         <div className='flex h-[88vh]'>
           <div className='w-56 bg-gray-100 h-full flex-none'>
             <div className='p-6'>
               <img className='h-10' alt="Girl in a jacket" src={SpotifyLogo}></img>
             </div>
             <div className="mx-2 mb-5">
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-sm focus:text-green-500 active:bg-white hover:bg-white focus:bg-white'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
                 <i className='material-icons'> <AiFillHome className='h-4 w-4 mr-3'/> </i>
                 <p>Home</p>
               </button>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-sm focus:text-green-500 active:bg-white hover:bg-white focus:bg-white'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
                 <i className='material-icons'> <BiSearchAlt className='h-4 w-4 mr-3'/> </i>
                 <p>Search</p>
               </button>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-sm focus:text-green-500 active:bg-white hover:bg-white focus:bg-white'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
                 <i className='material-icons'> <BiLibrary className='h-4 w-4 mr-3'/> </i>
                 <p>Library</p>
               </button>
@@ -150,29 +150,16 @@ export default function Home() {
             
             <div className='mx-2'>
               <h1 className='mb-3 text-xs text-gray-100 text-lightest tracking-widest uppercase'>Playlists</h1>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-sm focus:text-green-500 active:bg-white hover:bg-white focus:bg-white'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
                 <i> <BsFillPlusSquareFill className='h-4 w-4 mr-3'/> </i>
                 <p>Create Playlist</p>
               </button>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-sm focus:text-green-500 active:bg-white hover:bg-white focus:bg-white'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
                 <i> <AiFillHeart className='h-4 w-4 mr-3'/> </i>
                 <p>Liked Songs</p>
               </button>
               <div className='h-px w-full bg-gray-200 my-3'></div>
             </div>
-
-            {/* <div className='mx-5'>
-              <h1 className='mb-3 text-xs text-lightest tracking-widest uppercase'>Playlists</h1>
-              <button className='flex items-center justify-start opacity-75 hover:opacity-100 mb-2'>
-                <i> <BsFillPlusSquareFill className='h-6 w-6 mr-3' color='white'/> </i>
-                <p className='text-sm text-white font-semibold'>Create Playlist</p>
-              </button>
-              <button className='flex items-center justify-start opacity-75 hover:opacity-100'>
-                <i> <AiFillHeart className='h-6 w-6 mr-3' color='white'/> </i>
-                <p className='text-sm text-white font-semibold'>Liked Songs</p>
-              </button>
-              <div className='h-px w-full bg-light my-3'></div>
-            </div> */}
             <div className="mx-5">
               <div className="w-full h-24 overflow-y-scroll">
                 <p className='text-gray-500 hover:text-gray-800 text-sm py-1'>Welcome to Premium</p>
@@ -197,7 +184,7 @@ export default function Home() {
             </div>
           </div>
           <div className='w-full h-full relative overflow-y-scroll'>
-            <div className='w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-dark/80 z-10'>
+            <div className='w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-white/80 z-10'>
               <div className="flex items-center">
                 <button className='rounded-full bg-black w-8 h-8 text-white mr-3'>
                   <MdKeyboardArrowLeft className='text-3xl'/>
