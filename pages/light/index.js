@@ -134,15 +134,15 @@ export default function Home() {
               <img className='h-10' alt="Girl in a jacket" src={SpotifyLogo}></img>
             </div>
             <div className="mx-2 mb-5">
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 hover:text-green-500 hover:bg-white'>
                 <i className='material-icons'> <AiFillHome className='h-4 w-4 mr-3'/> </i>
                 <p>Home</p>
               </button>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 hover:text-green-500 hover:bg-white'>
                 <i className='material-icons'> <BiSearchAlt className='h-4 w-4 mr-3'/> </i>
                 <p>Search</p>
               </button>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 hover:text-green-500 hover:bg-white'>
                 <i className='material-icons'> <BiLibrary className='h-4 w-4 mr-3'/> </i>
                 <p>Library</p>
               </button>
@@ -150,11 +150,11 @@ export default function Home() {
             
             <div className='mx-2'>
               <h1 className='mb-3 text-xs text-gray-100 text-lightest tracking-widest uppercase'>Playlists</h1>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 hover:text-green-500 hover:bg-white'>
                 <i> <BsFillPlusSquareFill className='h-4 w-4 mr-3'/> </i>
                 <p>Create Playlist</p>
               </button>
-              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 focus:shadow-md hover:bg-white active:bg-white hover:text-green-500 active:text-green-500'>
+              <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 hover:text-green-500 hover:bg-white'>
                 <i> <AiFillHeart className='h-4 w-4 mr-3'/> </i>
                 <p>Liked Songs</p>
               </button>
