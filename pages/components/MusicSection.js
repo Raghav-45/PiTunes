@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { MusicCard } from './cards/Music'
 
-export const MusicSection = React.forwardRef((props) => {
+const MusicSection = React.forwardRef((props) => {
   const data = props.Data
   const SectionTitle = props.SectionTitle
   return (
@@ -18,3 +18,6 @@ export const MusicSection = React.forwardRef((props) => {
     </div>
   )
 })
+
+MusicSection.displayName = 'MusicSection'
+export MusicSection
