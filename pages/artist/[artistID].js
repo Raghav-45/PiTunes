@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 
-const artistPage = () => {
+const ArtistPage = () => {
   const router = useRouter()
   const artistID = router.query.artistID
 
@@ -8,4 +8,4 @@ const artistPage = () => {
     <div>Artist: {artistID}</div>
   )
 }
-export default artistPage
+export default ArtistPage
