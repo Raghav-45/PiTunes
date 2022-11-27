@@ -12,7 +12,7 @@ export const MusicSection = React.forwardRef((props) => {
       </div>
       <div className='w-full flex flex-wrap'>
         {data.map((elem) => (
-          <MusicCard Data={elem}/>
+          <MusicCard Data={elem} key={elem.id}/>
         ))}
       </div>
     </div>
