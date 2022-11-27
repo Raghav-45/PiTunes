@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 
-const albumPage = () => {
+const AlbumPage = () => {
   const router = useRouter()
   const albumID = router.query.albumID
 
@@ -8,4 +8,4 @@ const albumPage = () => {
     <div>Album: {albumID}</div>
   )
 }
-export default albumPage
+export default AlbumPage
