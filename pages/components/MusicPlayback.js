@@ -11,7 +11,7 @@ import { HiVolumeUp } from "react-icons/hi"
 import { BsFillSkipStartFill, BsFillSkipEndFill } from "react-icons/bs"
 import { FiRepeat } from "react-icons/fi"
 
-const MusicPlayback = React.forwardRef((props) => {
+export const MusicPlayback = React.forwardRef((props) => {
   const SongName = props.SongName
   const ArtistName = props.ArtistName
   return (
@@ -56,4 +56,4 @@ const MusicPlayback = React.forwardRef((props) => {
 })
 
 MusicPlayback.displayName = 'MusicPlayback'
-export MusicPlayback
+
