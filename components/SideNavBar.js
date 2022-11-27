@@ -2,7 +2,7 @@ import { AiFillHome, AiFillHeart, AiOutlineArrowDown } from "react-icons/ai"
 import { BiSearchAlt, BiLibrary, BiShuffle } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 
-export default const SideBar = () => {
+export const SideBar = () => {
   const SpotifyLogo = '/assets/Spotify_Logo_RGB_Green.png'
   const DailyMix1 = '/assets/DailyMix1.png'
   const DailyMix2 = '/assets/DailyMix1.png'
