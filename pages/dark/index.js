@@ -232,7 +232,7 @@ export default function Home() {
               </div>
               <div className='w-full flex flex-wrap'>
                 {JB_Purpose.results.songs.map((elem) => (
-                  <MusicCard Data={elem}/>
+                  <MusicCard Data={elem} key={elem.id}/>
                 ))}
               </div>
             </div>
