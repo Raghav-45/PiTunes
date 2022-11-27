@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { MusicCard } from './cards/Music'
 
-export const MusicSection = React.forwardRef((props) => {
+export const MusicSection = ((props) => {
   const data = props.Data
   const SectionTitle = props.SectionTitle
   return (
@@ -12,7 +12,7 @@ export const MusicSection = React.forwardRef((props) => {
       </div>
       <div className='w-full flex flex-wrap'>
         {data.map((elem) => (
-          <MusicCard Data={elem} key={elem.id}/>
+          <MusicCard Data={elem} Image={elem.image[1].link} Name={elem.name} Artist={elem.artist} key={elem.id}/>
         ))}
       </div>
     </div>
