@@ -11,7 +11,7 @@ import { HiVolumeUp } from "react-icons/hi"
 import { BsFillSkipStartFill, BsFillSkipEndFill } from "react-icons/bs"
 import { FiRepeat } from "react-icons/fi"
 
-const TopBar = () => {
+export default const TopBar = () => {
   const ProfilePic = '/assets/unnamed.jpg'
   const [ShowDropdown, setShowDropdown] = useState(false)
 
@@ -49,4 +49,3 @@ const TopBar = () => {
 }
 
 TopBar.displayName = 'TopBar'
-export default TopBar
