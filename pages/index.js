@@ -214,7 +214,7 @@ export default function Home() {
                 <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Recently Played</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
               </div>
-                    <ins class="adsbygoogle" style={{ display: "block" }} data-ad-client="ca-pub-987************676" data-ad-slot="776****95" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <ins class="adsbygoogle" style={{ display: "block" }} data-ad-client="ca-pub-5588726027217390" data-ad-slot="3440542867" data-ad-format="auto" data-full-width-responsive="true"></ins>
                     <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
               <div className='w-full flex flex-wrap'>
                 {data.recents.map((elem) => (
