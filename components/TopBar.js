@@ -16,7 +16,7 @@ export const TopBar = () => {
   const [ShowDropdown, setShowDropdown] = useState(false)
 
   return (
-    <div className='w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-white/80 dark:bg-dark/80 z-10'>
+    <div className='w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-white/50 dark:bg-dark/70 backdrop-blur-md z-10'>
       <div className="flex h-8 w-20 items-center justify-between">
         <button className='rounded-full bg-gray-100 dark:bg-black w-8 h-8 text-gray-500 dark:text-white opacity-50'>
           <MdKeyboardArrowLeft className='text-3xl'/>
