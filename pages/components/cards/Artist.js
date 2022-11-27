@@ -18,3 +18,4 @@ export const ArtistCard = React.forwardRef((props) => {
     </div>
   )
 })
+ArtistCard.displayName = 'ArtistCard'
