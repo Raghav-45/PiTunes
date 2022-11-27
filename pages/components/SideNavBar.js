@@ -61,4 +61,5 @@ const SideBar = () => {
   )
 }
 
+SideBar.displayName = 'SideBar'
 export default SideBar
