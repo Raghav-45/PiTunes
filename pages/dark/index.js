@@ -16,10 +16,10 @@ import { HiVolumeUp } from "react-icons/hi"
 import { BsFillSkipStartFill, BsFillSkipEndFill } from "react-icons/bs"
 import { FiRepeat } from "react-icons/fi"
 
-import SideBar from '../components/SideNavBar'
-import TopBar from '../components/TopBar'
-import { MusicCard } from '../components/cards/Music'
-import { MusicPlayback } from '../components/MusicPlayback'
+import SideBar from '../../components/SideNavBar'
+import TopBar from '../../components/TopBar'
+import { MusicCard } from '../../components/cards/Music'
+import { MusicPlayback } from '../../components/MusicPlayback'
 
 export default function Home() {
   const url = "https://jiosaavn-api.raghavbhai4545.repl.co/home"
