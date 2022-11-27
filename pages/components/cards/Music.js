@@ -19,3 +19,4 @@ export const MusicCard = React.forwardRef((props) => {
     </div>
   )
 })
+MusicCard.displayName = 'MusicCard'
