@@ -103,7 +103,7 @@ export default function Home() {
     ],
     play: true,
     Playback: {
-      Music: {src: '', title: 'Pablo', artist: 'King'}
+      Music: {src: '', title: 'No Loss', artist: 'King'}
     }
   }
 
