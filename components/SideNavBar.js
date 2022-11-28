@@ -1,44 +1,38 @@
+import Link from "next/link"
 import { AiFillHome, AiFillHeart, AiOutlineArrowDown } from "react-icons/ai"
-import { BiSearchAlt, BiLibrary, BiShuffle } from "react-icons/bi"
+import { BiSearchAlt, BiLibrary } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 
 export const SideBar = () => {
   const SpotifyLogo = '/assets/Spotify_Logo_RGB_Green.png'
-  const DailyMix1 = '/assets/DailyMix1.png'
-  const DailyMix2 = '/assets/DailyMix1.png'
-  const DailyMix3 = '/assets/DailyMix1.png'
-  const DailyMix4 = '/assets/DailyMix1.png'
-  const DailyMix5 = '/assets/DailyMix1.png'
-  const TestAudio = '/assets/TestAudio.mp3'
-  
   return (
     <div className='w-56 bg-gray-100 dark:bg-black h-full flex-none'>
       <div className='p-6'>
         <img className='h-10' alt="Girl in a jacket" src={SpotifyLogo}></img>
       </div>
       <div className="mx-2 mb-5">
-        <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-green-500 dark:text-white dark:bg-light shadow-md'>
-          <i className='material-icons'> <AiFillHome className='h-4 w-4 mr-3'/> </i>
+        <Link href='/home' className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-green-500 dark:text-white dark:bg-light shadow-md'>
+          <AiFillHome className='h-4 w-4 mr-3'/>
           <p>Home</p>
-        </button>
-        <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
-          <i className='material-icons'> <BiSearchAlt className='h-4 w-4 mr-3'/> </i>
+        </Link>
+        <Link href='/search' className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
+          <BiSearchAlt className='h-4 w-4 mr-3'/>
           <p>Search</p>
-        </button>
-        <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
-          <i className='material-icons'> <BiLibrary className='h-4 w-4 mr-3'/> </i>
+        </Link>
+        <Link href='/library' className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
+          <BiLibrary className='h-4 w-4 mr-3'/>
           <p>Library</p>
-        </button>
+        </Link>
       </div>
 
       <div className='mx-2'>
         <h1 className='mb-3 text-xs text-gray-100 dark:text-lightest tracking-widest uppercase'>Playlists</h1>
         <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
-          <i> <BsFillPlusSquareFill className='h-4 w-4 mr-3'/> </i>
+          <BsFillPlusSquareFill className='h-4 w-4 mr-3'/>
           <p>Create Playlist</p>
         </button>
         <button className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
-          <i> <AiFillHeart className='h-4 w-4 mr-3'/> </i>
+          <AiFillHeart className='h-4 w-4 mr-3'/>
           <p>Liked Songs</p>
         </button>
         <div className='h-px w-full bg-gray-200 dark:bg-light my-3'></div>
