@@ -117,8 +117,8 @@ export default function Home() {
   const DailyMix5 = '/assets/DailyMix1.png'
   const TestAudio = '/assets/TestAudio.mp3'
 
-  // return (
-  if (Loading) {return (<div> loading </div>)} else { return (
+  return (
+  // if (Loading) {return (<div> loading </div>)} else { return (
     <div className={styles.container}>
       <Head>
         <title>PiTunes</title>
@@ -235,7 +235,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className='px-6 py-3'>
+            {/* <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
                 <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Suggested artists</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
@@ -279,7 +279,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className='px-6 py-3'>
               <div className='pl-2'>
@@ -304,7 +304,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className='px-6 py-3'>
+            {/* <div className='px-6 py-3'>
               <div className='flex items-center justify-between'>
                 <h1 className='pl-2 text-2xl font-semibold text-white tracking-wider hover:underline'>Trending</h1>
                 <h2 className='pr-8 pt-4 text-xs text-lightest uppercase tracking-wider hover:underline mb-3'>See All</h2>
@@ -313,7 +313,6 @@ export default function Home() {
                 {JB_Purpose.results.songs.map((elem) => (
                   <div key={elem.id} className="group p-2 w-48 relative">
                     <div className="bg-light w-full h-auto p-4 rounded-lg shadow-md">
-                      {/* <div className='relative h-auto w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'> */}
                       <div className='relative h-36 w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 rounded-md'>
                         <div className='absolute playButton bg-green rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0'>
                           <button onClick={() => {setAudio(elem.downloadUrl[elem.downloadUrl.length-1].link);}}><FaPlay className='text-white text-1xl'/></button>
@@ -326,7 +325,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
           </div>
         </div>
@@ -366,5 +365,5 @@ export default function Home() {
       </div>
       {/* </main> */}
     </div>
-  )}
+  )
 }
