@@ -21,7 +21,7 @@ export const SideBar = () => {
         </Link>
         <Link href='/library' className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
           <BiLibrary className='h-4 w-4 mr-3'/>
-          <p>Library</p>
+          <p>Your Library</p>
         </Link>
       </div>
 

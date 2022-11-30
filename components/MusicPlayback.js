@@ -54,9 +54,9 @@ export const MusicPlayback = ((props) => {
   },[MusicSourceURL])
 
   useEffect(() => {
-    setSeekPos(~~((MusicCurrentTime/MusicDuration)*100))
+    setSeekPos(((MusicCurrentTime/MusicDuration)*100))
     console.log(SeekPos)
-  }, [MusicCurrentTime])
+  }, [fancyTimeFormat(MusicCurrentTime)])
 
   useEffect(() => {
     CurrentAudio.onloadedmetadata = () => {setMusicDuration(CurrentAudio.duration); console.log(CurrentAudio.duration);}
