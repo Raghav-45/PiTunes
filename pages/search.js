@@ -13,7 +13,7 @@ export default function SearchPage() {
           </div>
           <div className='w-full flex flex-wrap'>
             {SearchResults.Tracks.map((elem) => (
-              <MusicCard Name={elem.name} Artist={elem.artist} Image={elem.image[1].link} onPlayButton={() => {setMusicName(elem.name.replace(/&quot;/g, '\"')); setArtistName(elem.primaryArtists); setMusicSourceURL(elem.downloadUrl[elem.downloadUrl.length-1].link);}} />
+              <MusicCard Name={elem.name} Artist={elem.artist} Image={elem.image[elem.image.length-1].link} onPlayButton={() => {setMusicName(elem.name.replace(/&quot;/g, '\"')); setArtistName(elem.primaryArtists); setMusicSourceURL(elem.downloadUrl[elem.downloadUrl.length-1].link);}} key={elem.key} />
             ))}
           </div>
         </div>
