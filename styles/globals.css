@@ -20,6 +20,14 @@
   background-color: #1DB954;
 }
 
+html {
+  height: -webkit-fill-avaliable;
+}
+
+#mainContent {
+  height: -webkit-fill-avaliable;
+}
+
 /* html,
 body {
   padding: 0;

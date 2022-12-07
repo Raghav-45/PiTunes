@@ -2,12 +2,16 @@ import React from 'react'
 import Script from "next/script"
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import { MusicPlayback } from './MusicPlayback'
 import { SideBar } from './SideNavBar'
 import { TopBar } from './TopBar'
 
 export default function Layout({ children, title = 'PiTunes' }) {
+  const router = useRouter()
+  const isMobilePage = router.asPath === '/mobile'
+  if (isMobilePage) {return (<div>{children}</div>)} else {
   return (
     <div className='dark'>
       <Script data-ad-client="ca-pub-5588726027217390" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></Script>
@@ -27,5 +31,5 @@ export default function Layout({ children, title = 'PiTunes' }) {
         <MusicPlayback SongName='Name of Song' ArtistName='Name of the Artist'/>
       </div>
     </div>
-  )
+  )}
 }
