@@ -2,6 +2,7 @@ import Link from "next/link"
 import { AiFillHome, AiFillHeart, AiOutlineArrowDown } from "react-icons/ai"
 import { BiSearchAlt, BiLibrary } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
+import { MdPrivacyTip } from "react-icons/md"
 
 export const SideBar = () => {
   const SpotifyLogo = '/assets/Spotify_Logo_RGB_Green.png'
@@ -22,6 +23,10 @@ export const SideBar = () => {
         <Link href='/library' className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
           <BiLibrary className='h-4 w-4 mr-3'/>
           <p>Your Library</p>
+        </Link>
+        <Link href='/about' className='w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light'>
+          <MdPrivacyTip className='h-4 w-4 mr-3'/>
+          <p>About Us</p>
         </Link>
       </div>
 
