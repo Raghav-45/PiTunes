@@ -1,4 +1,3 @@
-import YouTube from 'react-youtube'
 import { PlayerContext } from '../contexts/ContextApi'
 import ReactPlayer from 'react-player/youtube'
 
@@ -15,14 +14,12 @@ export const YTPlayer = ((props) => {
   }
 
   const onYTReady = (e) => {
-    // access to player in all event handlers via event.target
     e.target.pauseVideo();
   }
 
   return (
     // load the YouTube player
-    // <YouTube videoId={MusicSourceURL} opts={opts} onReady={onYTReady} />
-    <ReactPlayer url={`https://www.youtube.com/watch?v=${MusicSourceURL}`} playing={IsPlaying} />
+    <ReactPlayer url={`https://www.youtube.com/watch?v=${MusicSourceURL}`} playing={IsPlaying} controls={'false'} volume='1' muted='false' onDuration={console.log('g')} />
   )
 })
 YTPlayer.displayName = 'YTPlayer'
