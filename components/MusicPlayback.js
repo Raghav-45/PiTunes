@@ -18,6 +18,7 @@ export const MusicPlayback = ((props) => {
   const [CurrentAudio, setCurrentAudio] = useState(typeof Audio !== "undefined" && new Audio("https://aac.saavncdn.com/459/b1b2eca1741fbdc13eead21e6978ec33_320.mp4"))
 
   const [SeekPos, setSeekPos] = useState('')
+  const [SS, setSS] = useState('')
 
   function fancyTimeFormat(duration) {
     // Hours, minutes and seconds
@@ -88,11 +89,10 @@ export const MusicPlayback = ((props) => {
         <div className='w-3/4 flex items-center justify-center mt-1'>
           {/* <p className='text-xs text-lightest mr-1'>00:00</p> */}
           <p className='text-xs text-lightest mr-1'>{fancyTimeFormat(MusicCurrentTime)}</p>
-          <div className="w-full h-1 bg-lightest rounded-full flex items-center">
+          {/* <div className="w-full h-1 bg-lightest rounded-full flex items-center"> */}
             {/* <div className='h-1 rounded-full bg-green-500 w-[18%]'></div>(MusicCurrentTime/MusicDuration)*100 */}
-            <div className='h-1 rounded-full bg-green-500 w-[0%] transition-all delay-0 duration-300 ease-in-out' style={{ width: `${SeekPos}%` }}></div>
-            <div className='h-4 w-4 bg-white rounded-full ml-1 -translate-x-3 shadow'></div>
-          </div>
+            <input type="range" min={'1'} max={'100'} value={SeekPos} onChange={(e) => setSS(e.target.value)} className='w-full h-1 bg-lightest rounded-full flex items-center' />
+          {/* </div> */}
           <p className='text-xs text-lightest ml-1'>{fancyTimeFormat(MusicDuration)}</p>
           {/* <p className='text-xs text-lightest ml-1'>5:00</p> */}
         </div>
