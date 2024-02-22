@@ -18,7 +18,7 @@ export default function ContextProvider({ children }) {
     const Result = {Tracks: [], Artists: [],}
     try {
       // const resp = await fetch('https://api.themoviedb.org/3/search/movie?api_key=b24785488c1326b9c4442d7325d37724&language=en-US&query=' + q + '&page=1&include_adult=false')
-      const resp = await fetch('https://ytmusicapi.raghavbhai4545.repl.co/search/songs?query=' + q)
+      const resp = await fetch('https://sickify-web-api.vercel.app/search/songs?query=' + q)
       const data = await resp.json()
       Result.Tracks = data
       console.log(data)
