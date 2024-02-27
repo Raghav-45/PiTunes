@@ -6,8 +6,8 @@ export const YTPlayer = ((props) => {
   const { MusicSourceURL, YTPlayer, setYTPlayer, IsPlaying, setIsPlaying, MusicDuration, setMusicDuration, MusicCurrentTime, setMusicCurrentTime } = PlayerContext()
 
   const opts = {
-    height: '72',
-    width: '128',
+    height: '100%',
+    width: '100%',
     playerVars: {
       autoplay: 1,
     },
@@ -19,7 +19,7 @@ export const YTPlayer = ((props) => {
 
   return (
     // load the YouTube player
-    <ReactPlayer url={`https://music.youtube.com/watch?v=${MusicSourceURL}`} height={'40px'} width={'100%'} playing={IsPlaying} controls={false} onDuration={(e) => setMusicDuration(e)} muted={false} onProgress={(e) => setMusicCurrentTime(e.playedSeconds)} />
+    <ReactPlayer url={`https://music.youtube.com/watch?v=${MusicSourceURL}`} height={opts.height} width={opts.width} playing={IsPlaying} controls={false} onDuration={(e) => setMusicDuration(e)} muted={false} onProgress={(e) => setMusicCurrentTime(e.playedSeconds)} />
   )
 })
 YTPlayer.displayName = 'YTPlayer'

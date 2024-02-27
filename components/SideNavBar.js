@@ -4,7 +4,7 @@ import { BiSearchAlt, BiLibrary } from "react-icons/bi"
 import { BsFillPlusSquareFill } from "react-icons/bs"
 import { MdPrivacyTip } from "react-icons/md"
 
-import { YTPlayer } from "./YTPlayer"
+// import { YTPlayer } from "./YTPlayer"
 
 export const SideBar = () => {
   const SpotifyLogo = '/assets/Spotify_Logo_RGB_Green.png'
@@ -57,7 +57,7 @@ export const SideBar = () => {
           <i className='mr-3 rounded-full border text-sm border-gray-500 dark:border-lightest'><AiOutlineArrowDown/></i>
           <p className='text-sm font-semibold'>Install App</p>
         </button>
-        <YTPlayer/>
+        {/* <YTPlayer/> */}
       </div>
     </div>
   )

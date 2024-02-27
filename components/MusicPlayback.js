@@ -13,6 +13,8 @@ import { HiVolumeUp } from "react-icons/hi"
 import { BsFillSkipStartFill, BsFillSkipEndFill } from "react-icons/bs"
 import { FiRepeat } from "react-icons/fi"
 
+import { YTPlayer } from "./YTPlayer"
+
 export const MusicPlayback = ((props) => {
   const { MusicName, ArtistName, MusicSourceURL, IsPlaying, setIsPlaying, MusicDuration, setMusicDuration, MusicCurrentTime, setMusicCurrentTime } = PlayerContext()
   const [CurrentAudio, setCurrentAudio] = useState(typeof Audio !== "undefined" && new Audio("https://aac.saavncdn.com/459/b1b2eca1741fbdc13eead21e6978ec33_320.mp4"))
@@ -65,10 +67,18 @@ export const MusicPlayback = ((props) => {
   return (
     <div className='w-full h-[12vh] flex items-center justify-between px-3 bg-light border-t border-dark'>
       <div className="flex items-center w-1/4">
-        <div>
+        <div className='flex flex-row h-10'>
+          <div className='flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden rounded-md'>
+            {/* <img src={'/assets/DailyMix1.jfif'} className='h-full w-full'/> */}
+            <YTPlayer/>
+          </div>
+          <div className='flex flex-1 flex-col ml-2 align-middle text-left'>
+            <h1 className='text-sm text-white font-semibold'>{MusicName}</h1>
+            <h2 className='text-xs text-white'>{ArtistName}</h2>
+          </div>
           {/* <h1 className='text-sm text-white tracking-wide'>{SongName}</h1> */}
-          <h1 className='text-sm text-white tracking-wide'>{MusicName}</h1>
-          <h2 className='text-xs text-lightest tracking-wide'>{ArtistName}</h2>
+          {/* <h1 className='text-sm text-white tracking-wide'>{MusicName}</h1>
+          <h2 className='text-xs text-lightest tracking-wide'>{ArtistName}</h2> */}
           {/* <h2 className='text-xs text-lightest tracking-wide'>{MusicSourceURL}</h2> */}
         </div>
         <AiFillHeart className='text-xl text-green-500 mx-4'/>
