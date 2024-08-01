@@ -3,6 +3,7 @@ import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
+import Topbar from '@/components/Topbar'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -27,10 +28,10 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <div className='flex flex-row'>
+        <div className="flex flex-row">
           <Sidebar />
           <div className="w-full h-full relative overflow-y-scroll">
-            {/* <TopBar /> */}
+            <Topbar />
             {children}
           </div>
         </div>

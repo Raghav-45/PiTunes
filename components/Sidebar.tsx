@@ -7,7 +7,6 @@ import {
   HeartFilledIcon,
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import { Button } from './ui/button'
 
 interface SidebarProps {}
 
