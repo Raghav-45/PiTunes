@@ -1,7 +1,6 @@
 import MusicCard from '@/components/MusicCard'
 import SectionHeading from '@/components/SectionHeading'
-import { PlayIcon } from '@radix-ui/react-icons'
-import Image from 'next/image'
+import { YT_offline } from '@/lib/testdata'
 
 const data = {
   pages: [
@@ -92,7 +91,7 @@ const data = {
 export default function Home() {
   return (
     <div className="px-6 py-3">
-      <SectionHeading name="Recently Played" extra='Get better recommendations the more you listen.' />
+      <SectionHeading name="Recently Played" />
       <div className="w-full flex flex-wrap">
         {data.recents.map((elem) => (
           <MusicCard
@@ -100,6 +99,38 @@ export default function Home() {
             name={elem.title}
             artist={elem.artist}
             image={`https://pitunes.vercel.app${elem.src}`}
+            videoId={'elem.videoId'}
+          />
+        ))}
+      </div>
+
+      <SectionHeading
+        name="Made for Raghav"
+        extra="Get better recommendations the more you listen."
+      />
+      <div className="w-full flex flex-wrap">
+        {YT_offline[2].contents.map((elem) => (
+          <MusicCard
+            key={elem.title}
+            name={elem.title}
+            artist={elem.views}
+            image={elem.thumbnails[elem.thumbnails.length - 1].url}
+            videoId={'elem.videoId'}
+          />
+        ))}
+      </div>
+
+      <SectionHeading
+        name="Made for Raghav"
+        extra="Get better recommendations the more you listen."
+      />
+      <div className="w-full flex flex-wrap">
+        {YT_offline[2].contents.map((elem) => (
+          <MusicCard
+            key={elem.title}
+            name={elem.title}
+            artist={elem.views}
+            image={elem.thumbnails[elem.thumbnails.length - 1].url}
             videoId={'elem.videoId'}
           />
         ))}

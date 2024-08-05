@@ -7,12 +7,20 @@ import {
   HeartFilledIcon,
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
+import {
+  HeartIcon,
+  HouseIcon,
+  ListMusicIcon,
+  SearchIcon,
+  ShieldAlertIcon,
+  SquarePlusIcon,
+} from 'lucide-react'
 
 interface SidebarProps {}
 
 const Sidebar: FC<SidebarProps> = ({}) => {
   return (
-    <div className="w-56 bg-gray-100 dark:bg-black h-full flex-none">
+    <div className="w-56 bg-gray-100 sticky top-0 dark:bg-black h-full flex-none">
       <div className="p-6">
         <img
           className="h-10"
@@ -26,28 +34,28 @@ const Sidebar: FC<SidebarProps> = ({}) => {
             href="/home"
             className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-green-500 dark:text-white dark:bg-light shadow-md"
           >
-            <HomeIcon className="h-4 w-4 mr-3" />
+            <HouseIcon className="h-4 w-4 mr-3" />
             <p>Home</p>
           </Link>
           <Link
             href="/search"
             className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start dark:text-white dark:hover:bg-light"
           >
-            <MagnifyingGlassIcon className="h-4 w-4 mr-3" />
+            <SearchIcon className="h-4 w-4 mr-3" />
             <p>Search</p>
           </Link>
           <Link
             href="/library"
             className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start dark:text-white dark:hover:bg-light"
           >
-            <TokensIcon className="h-4 w-4 mr-3" />
+            <ListMusicIcon className="h-4 w-4 mr-3" />
             <p>Your Library</p>
           </Link>
           <Link
             href="/library"
             className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start dark:text-white dark:hover:bg-light"
           >
-            <TokensIcon className="h-4 w-4 mr-3" />
+            <ShieldAlertIcon className="h-4 w-4 mr-3" />
             <p>About Us</p>
           </Link>
         </div>
@@ -56,11 +64,11 @@ const Sidebar: FC<SidebarProps> = ({}) => {
             PLAYLISTS
           </h6>
           <button className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light">
-            <PlusIcon className="h-4 w-4 mr-3" />
+            <SquarePlusIcon className="h-4 w-4 mr-3" />
             <p>Create Playlist</p>
           </button>
           <button className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-gray-500 dark:text-white hover:text-green-500 hover:bg-white dark:hover:bg-light">
-            <HeartFilledIcon className="h-4 w-4 mr-3" />
+            <HeartIcon className="h-4 w-4 mr-3" />
             <p>Liked Songs</p>
           </button>
         </div>

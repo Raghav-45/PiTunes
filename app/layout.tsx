@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import Topbar from '@/components/Topbar'
+import Player from '@/components/Player'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -30,11 +31,12 @@ export default function RootLayout({
       >
         <div className="flex flex-row">
           <Sidebar />
-          <div className="w-full h-full relative overflow-y-scroll">
+          <div className="w-full h-full">
             <Topbar />
             {children}
           </div>
         </div>
+        <Player name="Name of Song" extra="Name of the Artist" />
       </body>
     </html>
   )
