@@ -52,7 +52,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
             <p>Your Library</p>
           </Link>
           <Link
-            href="/library"
+            href="/about-us"
             className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start dark:text-white dark:hover:bg-light"
           >
             <ShieldAlertIcon className="h-4 w-4 mr-3" />
