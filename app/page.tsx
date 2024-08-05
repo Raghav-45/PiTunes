@@ -92,7 +92,7 @@ const data = {
 export default function Home() {
   return (
     <div className="px-6 py-3">
-      <SectionHeading name="Recently Played" />
+      <SectionHeading name="Recently Played" extra='Get better recommendations the more you listen.' />
       <div className="w-full flex flex-wrap">
         {data.recents.map((elem) => (
           <MusicCard
