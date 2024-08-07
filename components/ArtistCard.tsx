@@ -1,27 +1,18 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import MusicPlayButton from '@/components/MusicPlayButton'
 
-interface MusicCardProps {
+interface ArtistCardProps {
   name: string
-  artist: string
+  extra: string
   image: string
   videoId?: string
 }
 
-const MusicCard: FC<MusicCardProps> = ({ name, artist, image, videoId }) => {
+const ArtistCard: FC<ArtistCardProps> = ({ name, extra, image, videoId }) => {
   return (
     <div className="relative flex-none group p-2 w-48">
       <div className="bg-light w-full h-auto p-4 rounded-xl shadow-md">
-        <div className="relative aspect-square w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 overflow-hidden rounded-lg">
-          {videoId && (
-            <MusicPlayButton
-              name={name}
-              artist={artist}
-              image={image}
-              videoId={videoId}
-            />
-          )}
+        <div className="relative aspect-square w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 overflow-hidden rounded-full">
           <Image
             height={136}
             width={136}
@@ -34,11 +25,11 @@ const MusicCard: FC<MusicCardProps> = ({ name, artist, image, videoId }) => {
           {name}
         </h1>
         <h2 className="text-xs text-lightest tracking-wide whitespace-nowrap overflow-x-hidden text-ellipsis pb-0">
-          {artist}
+          {extra}
         </h2>
       </div>
     </div>
   )
 }
 
-export default MusicCard
+export default ArtistCard

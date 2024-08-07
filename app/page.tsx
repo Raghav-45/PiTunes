@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <div className="px-6 py-3">
       <SectionHeading name="Recently Played" />
-      <div className="w-full flex flex-wrap">
+      <div className="w-full flex flex-wrap mb-8">
         {data.recents.map((elem) => (
           <MusicCard
             key={elem.title}
@@ -108,7 +108,7 @@ export default function Home() {
         name="Made for Raghav"
         extra="Get better recommendations the more you listen."
       />
-      <div className="w-full flex flex-wrap">
+      <div className="w-full flex flex-wrap mb-8">
         {YT_offline[2].contents.map((elem) => (
           <MusicCard
             key={elem.title}
@@ -124,7 +124,7 @@ export default function Home() {
         name="Made for Raghav"
         extra="Get better recommendations the more you listen."
       />
-      <div className="w-full flex flex-wrap">
+      <div className="w-full flex flex-wrap mb-8">
         {YT_offline[2].contents.map((elem) => (
           <MusicCard
             key={elem.title}
