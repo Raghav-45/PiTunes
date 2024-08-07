@@ -118,7 +118,7 @@ const Player: FC<PlayerProps> = ({ name, extra }) => {
           <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-lightest">
             <SliderPrimitive.Range className="absolute h-full bg-white" />
           </SliderPrimitive.Track>
-          <SliderPrimitive.Thumb className="block h-1 w-px bg-white shadow focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50" />
+          <SliderPrimitive.Thumb className="block h-3 w-1.5 bg-transparent shadow focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50" />
         </SliderPrimitive.Root>
       </div>
     </div>
