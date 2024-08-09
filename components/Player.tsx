@@ -65,6 +65,7 @@ const Player: FC<PlayerProps> = () => {
     currentPlayed,
     setCurrentPlayed,
     currentloaded,
+    playerType,
   } = useGenerationStore()
   return (
     <div className="w-full sticky bottom-0 h-24 flex items-center justify-between px-3 bg-light border-t border-dark">
@@ -176,6 +177,7 @@ const Player: FC<PlayerProps> = () => {
           <RiPlayListFill className="text-xl text-lightest hover:text-white" />
           <MdDevicesOther className="text-xl text-lightest hover:text-white" />
           <HiVolumeUp className="text-xl text-lightest hover:text-white" />
+          <p className='text-sm text-lightest'>{playerType}</p>
         </div>
         <SliderPrimitive.Root
           className="relative flex touch-none select-none items-center ml-4 w-32"

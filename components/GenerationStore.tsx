@@ -22,9 +22,13 @@ interface generationState {
   setCurrentPlayed: (currentPlayed: number) => void
   currentloaded: number
   setCurrentloaded: (currentloaded: number) => void
+  playerType: playerTypes
+  setPlayerType: (playerType: playerTypes) => void
   //   userPlaylists: PlaylistTypeWithId[] | null
   //   setUserPlaylists: (userPlaylists: PlaylistTypeWithId[] | null) => void
 }
+
+type playerTypes = 'source' | 'jio-saavn' | 'youtube-embed'
 
 // interface Artist {
 //   id: string
@@ -58,6 +62,8 @@ export const useGenerationStore = create<generationState>()((set) => ({
   setCurrentPlayed: (currentPlayed: number) => set({ currentPlayed }),
   currentloaded: 0,
   setCurrentloaded: (currentloaded: number) => set({ currentloaded }),
+  playerType: 'jio-saavn',
+  setPlayerType: (playerType: playerTypes) => set({ playerType }),
   //   userPlaylists: null,
   //   setUserPlaylists: (userPlaylists: PlaylistTypeWithId[] | null) => set({ userPlaylists }),
 }))

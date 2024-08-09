@@ -11,15 +11,17 @@ interface MusicPlayButtonProps {
   type?: 'track' | 'album' | 'artist' | 'single'
   songId?: string
   source?: string
+  overlay?: boolean
 }
 
 const MusicPlayButton: FC<MusicPlayButtonProps> = ({
   name,
   artist,
   image,
-  type,
+  type = 'track',
   songId,
   source,
+  overlay,
 }) => {
   const { setName, setArtist, setImage, setAudioSource } = useGenerationStore()
 
@@ -77,18 +79,28 @@ const MusicPlayButton: FC<MusicPlayButtonProps> = ({
     }
   }
   return (
-    // <div className="absolute playButton bg-green-500 rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0">
     <>
-      {(source || songId) && (
-        <button
-          className="absolute playButton bg-green-500 rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0"
-          onClick={handleClick}
-        >
-          <Icons.Play className="text-white text-1xl" />
-        </button>
+      {!overlay ? (
+        (source || songId) && (
+          <button
+            className="absolute playButton bg-green-500 rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0"
+            onClick={handleClick}
+          >
+            <Icons.Play className="text-white text-1xl" />
+          </button>
+        )
+      ) : (
+        <div className="absolute flex flex-row h-full w-full top-0 inset-x-0">
+          {source && (
+            <div
+              className="flex-auto h-full w-full cursor-pointer"
+              onClick={handleClick}
+            ></div>
+          )}
+          <div className="flex flex-none h-full w-auto aspect-square text-white items-center justify-center mr-1"></div>
+        </div>
       )}
     </>
-    // </div>
   )
 }
 
