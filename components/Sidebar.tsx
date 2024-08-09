@@ -31,7 +31,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       <div className="flex flex-col gap-y-5 mx-2">
         <div>
           <Link
-            href="/home"
+            href="/"
             className="w-full font-semibold focus:outline-none text-sm rounded-lg px-3 py-2 flex items-center justify-start text-green-500 dark:text-white dark:bg-light shadow-md"
           >
             <HouseIcon className="h-4 w-4 mr-3" />

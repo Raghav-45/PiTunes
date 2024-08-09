@@ -1,7 +1,6 @@
 import Cards from '@/components/Cards'
 import TrackList from '@/components/TrackList'
 import Image from 'next/image'
-import Link from 'next/link'
 
 // Define interfaces for the API response
 interface Image {
@@ -95,9 +94,9 @@ interface ApiResponse {
   data: SearchResults
 }
 
-const getArtist = async (query: string): Promise<ApiResponse | null> => {
+const getAlbum = async (query: string): Promise<ApiResponse | null> => {
   try {
-    const response = await fetch(`https://saavn.dev/api/artists/${query}`)
+    const response = await fetch(`https://saavn.dev/api/albums?id=${query}`)
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
@@ -114,12 +113,12 @@ function convertToLakhs(followers: number): string {
   return lakhs.toFixed(2) + 'M' // Format to 2 decimal places
 }
 
-export default async function ArtistPage({
+export default async function AlbumPage({
   params,
 }: {
   params: { id: string }
 }) {
-  const data = await getArtist(params.id)
+  const data = await getAlbum(params.id)
   return (
     <div className="py-3 px-10 shadow-md">
       <div className="flex items-center mb-6">
@@ -132,15 +131,13 @@ export default async function ArtistPage({
         </div>
         <div className="gap-2 flex flex-col">
           <h1 className="text-6xl font-bold">{data?.data.name}</h1>
-          <h2 className="text-lg">
-            {convertToLakhs(data?.data.followerCount)} Followers
-          </h2>
+          <h2 className="text-lg">{data?.data.year}</h2>
         </div>
       </div>
       <div>
         <h2 className="text-2xl font-semibold mb-2 ml-2">Songs</h2>
         <div className="w-full mb-8">
-          {data?.data.topSongs.map((song, index) => (
+          {data?.data.songs.map((song, index) => (
             <TrackList
               name={song.name}
               image={song.image[song.image.length - 1].url}
@@ -149,38 +146,6 @@ export default async function ArtistPage({
               key={song.name}
               songId={song.id}
               isPlayable={true}
-            />
-          ))}
-        </div>
-      </div>
-      <div>
-        <h2 className="text-2xl font-semibold ml-2">Albums</h2>
-        <div className="w-full flex flex-wrap mb-8">
-          {data?.data.topAlbums.map((album, index) => (
-            <Link key={album.id} href={`/album/${album.id}`}>
-              <Cards
-                key={album.id}
-                name={album.name}
-                extra={album.year}
-                image={album.image[album.image.length - 1].url}
-                isPlayable={false}
-              />
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h2 className="text-2xl font-semibold ml-2">Singles</h2>
-        <div className="w-full flex flex-wrap mb-8">
-          {data?.data.singles.map((album, index) => (
-            <Cards
-              key={album.id}
-              name={album.name}
-              extra={album.year}
-              image={album.image[album.image.length - 1].url}
-              isPlayable={true}
-              songId={album.id}
-              type="single"
             />
           ))}
         </div>

@@ -188,14 +188,16 @@ export default function Search() {
               <SectionHeading name="Albums" />
               <div className="w-full flex flex-wrap mb-8">
                 {data.albums.results.map((album) => (
-                  <Cards
-                    key={album.id}
-                    name={album.title}
-                    extra={album.artist}
-                    image={album.image[album.image.length - 1].url}
-                    isPlayable={false}
-                    type="album"
-                  />
+                  <Link key={album.id} href={`/album/${album.id}`}>
+                    <Cards
+                      key={album.id}
+                      name={album.title}
+                      extra={album.artist}
+                      image={album.image[album.image.length - 1].url}
+                      isPlayable={false}
+                      type="album"
+                    />
+                  </Link>
                 ))}
               </div>
             </>
