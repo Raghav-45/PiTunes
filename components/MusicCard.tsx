@@ -6,10 +6,17 @@ interface MusicCardProps {
   name: string
   artist: string
   image: string
+  source: string
   videoId?: string
 }
 
-const MusicCard: FC<MusicCardProps> = ({ name, artist, image, videoId }) => {
+const MusicCard: FC<MusicCardProps> = ({
+  name,
+  artist,
+  image,
+  source,
+  videoId,
+}) => {
   return (
     <div className="relative flex-none group p-2 w-48">
       <div className="bg-light w-full h-auto p-4 rounded-xl shadow-md">
@@ -19,6 +26,7 @@ const MusicCard: FC<MusicCardProps> = ({ name, artist, image, videoId }) => {
               name={name}
               artist={artist}
               image={image}
+              source={source}
               videoId={videoId}
             />
           )}

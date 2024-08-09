@@ -72,36 +72,15 @@ const Player: FC<PlayerProps> = () => {
         className="bg-red-500 h-auto w-auto p-3 absolute top-0 left-0 -translate-y-full rounded-t-2xl border-b border-black"
         style={{ transform: 'translateY(calc(-100% - 1px))' }}
       >
-        {/* <audio
-          ref={audioRef}
-          onPlay={(e) => console.log('e.currentTarget.currentTime')}
-          onTimeUpdate={(e) => {
-            setCurrentPlayed(e.currentTarget.currentTime)
-            setTrackLength(e.currentTarget.duration)
-            console.log(e.currentTarget.currentTime)
-          }}
-          onLoadedMetadata={(e) =>
-            // setTrackLength(e.currentTarget.duration)
-            console.log('Track Length:')
-          }
-          controls
-        >
-          <source
-            src="https://aac.saavncdn.com/169/828344c0f7ccc2e21f37e79616200bcc_320.mp4"
-            type="audio/mpeg"
-          />
-          Your browser does not support the audio element.
-        </audio> */}
-
         {audioSource && (
-          <ForwardedAudioPlayer
+          <CustomAudioPlayer
             ref={audioRef}
             source={audioSource}
             onPlay={(e) => console.log('e.currentTarget.currentTime')}
-            onTimeUpdate={(currentTime, duration) => {
-              setCurrentPlayed(currentTime)
-              setTrackLength(duration)
-              console.log(currentTime)
+            onTimeUpdate={(e) => {
+              setCurrentPlayed(e.currentTarget.currentTime)
+              setTrackLength(e.currentTarget.duration)
+              console.log(e.currentTarget.currentTime)
             }}
             onLoadedMetadata={(e) =>
               // setTrackLength(e.currentTarget.duration)
@@ -214,15 +193,12 @@ const Player: FC<PlayerProps> = () => {
   )
 }
 
-type AudioPlayerProps = {
+type AudioPlayerProps = React.AudioHTMLAttributes<HTMLAudioElement> & {
   source: string
-  onPlay?: (currentTime: number) => void
-  onTimeUpdate?: (currentTime: number, duration: number) => void
-  onLoadedMetadata?: (duration: number) => void
 }
 
-const ForwardedAudioPlayer = forwardRef<HTMLAudioElement, AudioPlayerProps>(
-  ({ source, onPlay, onTimeUpdate, onLoadedMetadata }, ref) => {
+const CustomAudioPlayer = forwardRef<HTMLAudioElement, AudioPlayerProps>(
+  ({ source, ...props }, ref) => {
     const audioRef = useRef<HTMLAudioElement | null>(null)
 
     useImperativeHandle(ref, () => audioRef.current as HTMLAudioElement, [
@@ -236,25 +212,13 @@ const ForwardedAudioPlayer = forwardRef<HTMLAudioElement, AudioPlayerProps>(
     }, [source])
 
     return (
-      <audio
-        ref={audioRef}
-        onPlay={(e) => onPlay && onPlay(e.currentTarget.currentTime)}
-        onTimeUpdate={(e) =>
-          onTimeUpdate &&
-          onTimeUpdate(e.currentTarget.currentTime, e.currentTarget.duration)
-        }
-        onLoadedMetadata={(e) =>
-          onLoadedMetadata && onLoadedMetadata(e.currentTarget.duration)
-        }
-        controls
-      >
+      <audio ref={audioRef} {...props} controls>
         <source src={source} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     )
   }
 )
-
-ForwardedAudioPlayer.displayName = 'audioPlayer'
+CustomAudioPlayer.displayName = 'CustomAudioPlayer'
 
 export default Player

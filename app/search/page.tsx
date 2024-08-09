@@ -156,7 +156,7 @@ export default function Search() {
                       extra={elem.description}
                       image={elem.image[elem.image.length - 1].url}
                       isPlayable={false}
-                      rounded={elem.type == 'artist'}
+                      type={elem.type == 'artist' ? 'artist' : 'track'}
                     />
                   </Link>
                 ))}
@@ -175,7 +175,8 @@ export default function Search() {
                     extra={song.primaryArtists}
                     image={song.image[song.image.length - 1].url}
                     isPlayable={true}
-                    videoId={'elem.videoId'}
+                    songId={song.id}
+                    type="track"
                   />
                 ))}
               </div>
@@ -193,6 +194,7 @@ export default function Search() {
                     extra={album.artist}
                     image={album.image[album.image.length - 1].url}
                     isPlayable={false}
+                    type="album"
                   />
                 ))}
               </div>
@@ -211,7 +213,7 @@ export default function Search() {
                       extra={artist.description}
                       image={artist.image[artist.image.length - 1].url}
                       isPlayable={false}
-                      rounded
+                      type="artist"
                     />
                   </Link>
                 ))}
@@ -219,7 +221,7 @@ export default function Search() {
             </>
           )}
 
-          {data.playlists.results.length > 0 && (
+          {/* {data.playlists.results.length > 0 && (
             <>
               <SectionHeading name="Playlists" />
               <div className="w-full flex flex-wrap mb-8">
@@ -234,7 +236,7 @@ export default function Search() {
                 ))}
               </div>
             </>
-          )}
+          )} */}
         </div>
       )}
     </div>

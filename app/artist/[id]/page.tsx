@@ -146,6 +146,8 @@ export default async function ArtistPage({
               extra={song.year}
               source={song.downloadUrl[song.downloadUrl.length - 1].url}
               key={song.name}
+              songId={song.id}
+              isPlayable={true}
             />
           ))}
         </div>
@@ -173,7 +175,9 @@ export default async function ArtistPage({
               name={album.name}
               extra={album.year}
               image={album.image[album.image.length - 1].url}
-              isPlayable={false}
+              isPlayable={true}
+              songId={album.id}
+              type="single"
             />
           ))}
         </div>

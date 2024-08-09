@@ -8,8 +8,10 @@ interface CardsProps {
   extra: string
   image: string
   isPlayable?: boolean
+  type?: 'track' | 'album' | 'artist' | 'single'
   rounded?: boolean
-  videoId?: string
+  songId?: string
+  source?: string
 }
 
 const Cards: FC<CardsProps> = ({
@@ -17,8 +19,10 @@ const Cards: FC<CardsProps> = ({
   extra,
   image,
   isPlayable = true,
+  type = 'track',
   rounded = false,
-  videoId,
+  songId,
+  source,
 }) => {
   return (
     <div className="relative flex-none group p-2 w-48">
@@ -26,15 +30,17 @@ const Cards: FC<CardsProps> = ({
         <div
           className={cn(
             'relative aspect-square w-full shadow-[0_8px_24px_rgb(0,0,0,50%)] mb-3 overflow-hidden',
-            rounded ? 'rounded-full' : 'rounded-lg'
+            type == 'artist' ? 'rounded-full' : (rounded ? 'rounded-full' : 'rounded-lg')
           )}
         >
-          {isPlayable && videoId && (
+          {isPlayable && (
             <MusicPlayButton
               name={name}
               artist={extra}
               image={image}
-              videoId={videoId}
+              songId={songId}
+              source={source}
+              type={type}
             />
           )}
           <Image
