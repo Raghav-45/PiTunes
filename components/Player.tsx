@@ -1,7 +1,9 @@
+'use client'
+
 import { PictureInPicture2Icon } from 'lucide-react'
 
 import { AiFillHeart } from 'react-icons/ai'
-import { FaPlay } from 'react-icons/fa'
+import { FaPause, FaPlay } from 'react-icons/fa'
 import { BiShuffle } from 'react-icons/bi'
 import { MdDevicesOther } from 'react-icons/md'
 import { RiPlayListFill } from 'react-icons/ri'
@@ -9,8 +11,16 @@ import { HiVolumeUp } from 'react-icons/hi'
 import { BsFillSkipStartFill, BsFillSkipEndFill } from 'react-icons/bs'
 import { FiRepeat } from 'react-icons/fi'
 
-import { FC } from 'react'
+import React, {
+  FC,
+  useRef,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
+import { useGenerationStore } from './GenerationStore'
+import { cn } from '@/lib/utils'
 
 interface PlayerProps {
   name: string
@@ -39,21 +49,88 @@ function fancyTimeFormat(duration: number) {
   return ret
 }
 
-const Player: FC<PlayerProps> = ({ name, extra }) => {
+const Player: FC<PlayerProps> = () => {
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const {
+    name,
+    artist,
+    image,
+    isPlaying,
+    setIsPlaying,
+    isLoading,
+    audioSource,
+    setAudioSource,
+    trackLength,
+    setTrackLength,
+    currentPlayed,
+    setCurrentPlayed,
+    currentloaded,
+  } = useGenerationStore()
   return (
     <div className="w-full sticky bottom-0 h-24 flex items-center justify-between px-3 bg-light border-t border-dark">
+      <div
+        className="bg-red-500 h-auto w-auto p-3 absolute top-0 left-0 -translate-y-full rounded-t-2xl border-b border-black"
+        style={{ transform: 'translateY(calc(-100% - 1px))' }}
+      >
+        {/* <audio
+          ref={audioRef}
+          onPlay={(e) => console.log('e.currentTarget.currentTime')}
+          onTimeUpdate={(e) => {
+            setCurrentPlayed(e.currentTarget.currentTime)
+            setTrackLength(e.currentTarget.duration)
+            console.log(e.currentTarget.currentTime)
+          }}
+          onLoadedMetadata={(e) =>
+            // setTrackLength(e.currentTarget.duration)
+            console.log('Track Length:')
+          }
+          controls
+        >
+          <source
+            src="https://aac.saavncdn.com/169/828344c0f7ccc2e21f37e79616200bcc_320.mp4"
+            type="audio/mpeg"
+          />
+          Your browser does not support the audio element.
+        </audio> */}
+
+        {audioSource && (
+          <ForwardedAudioPlayer
+            ref={audioRef}
+            source={audioSource}
+            onPlay={(e) => console.log('e.currentTarget.currentTime')}
+            onTimeUpdate={(currentTime, duration) => {
+              setCurrentPlayed(currentTime)
+              setTrackLength(duration)
+              console.log(currentTime)
+            }}
+            onLoadedMetadata={(e) =>
+              // setTrackLength(e.currentTarget.duration)
+              console.log('Track Length:')
+            }
+          />
+        )}
+      </div>
       <div className="flex items-center w-1/4">
         <div className="flex flex-row h-12">
-          <div className="flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden rounded-md">
+          <div
+            className={cn(
+              'flex-none aspect-square h-full shadow-[0_4px_24px_rgb(0,0,0,50%)] overflow-hidden transition-all',
+              image ? 'rounded-lg' : 'rounded-full'
+            )}
+          >
             <img
-              src={'https://pitunes.vercel.app/assets/DailyMix3.jfif'}
+              src={image ?? 'https://sickify-web.vercel.app/icon-192x192.png'}
               className="h-full w-full"
             />
             {/* <YTPlayer /> */}
           </div>
           <div className="flex flex-1 flex-col ml-3 align-middle self-center text-left">
-            <h1 className="text-sm text-white font-semibold">{name}</h1>
-            <h2 className="text-xs text-lightest">{extra}</h2>
+            <h1 className="text-sm text-white font-semibold">
+              {name ?? 'Sickify'}
+            </h1>
+            <h2 className="text-xs text-lightest">
+              {artist ?? 'By - @raghav_aditya_45'}
+            </h2>
           </div>
         </div>
         <AiFillHeart className="text-xl text-green-500 mx-4" />
@@ -69,8 +146,20 @@ const Player: FC<PlayerProps> = ({ name, extra }) => {
             <BsFillSkipStartFill className="text-2xl" />
           </button>
           <button>
-            <div className="bg-green-500 hover:bg-green-400 hover:scale-110 rounded-full h-9 w-9 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-100">
-              <FaPlay className="text-white text-sm translate-x-[1.5px]" />
+            <div
+              className="bg-green-500 hover:bg-green-400 hover:scale-110 rounded-full h-9 w-9 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-100"
+              onClick={() => {
+                setIsPlaying(!isPlaying)
+                if (audioRef?.current) {
+                  isPlaying ? audioRef.current.pause() : audioRef.current.play()
+                }
+              }}
+            >
+              {isPlaying ? (
+                <FaPause className="text-white text-sm translate-x-[1.5px]" />
+              ) : (
+                <FaPlay className="text-white text-sm translate-x-[1.5px]" />
+              )}
             </div>
           </button>
           <button className="mx-3 text-lightest hover:text-white">
@@ -82,14 +171,14 @@ const Player: FC<PlayerProps> = ({ name, extra }) => {
         </div>
         <div className="w-3/4 flex items-center justify-center mt-1">
           <p className="text-xs text-lightest mr-1">
-            {fancyTimeFormat(MusicCurrentTime)}
+            {fancyTimeFormat(currentPlayed ?? 0)}
           </p>
 
           <SliderPrimitive.Root
             className="relative flex w-full touch-none select-none items-center"
             defaultValue={[0]}
-            value={[SeekPos]}
-            max={100}
+            value={[currentPlayed]}
+            max={trackLength ?? 100}
             step={0.01}
           >
             <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-lightest">
@@ -99,7 +188,7 @@ const Player: FC<PlayerProps> = ({ name, extra }) => {
           </SliderPrimitive.Root>
 
           <p className="text-xs text-lightest ml-1">
-            {fancyTimeFormat(MusicDuration)}
+            {fancyTimeFormat(trackLength ?? 0)}
           </p>
         </div>
       </div>
@@ -124,5 +213,48 @@ const Player: FC<PlayerProps> = ({ name, extra }) => {
     </div>
   )
 }
+
+type AudioPlayerProps = {
+  source: string
+  onPlay?: (currentTime: number) => void
+  onTimeUpdate?: (currentTime: number, duration: number) => void
+  onLoadedMetadata?: (duration: number) => void
+}
+
+const ForwardedAudioPlayer = forwardRef<HTMLAudioElement, AudioPlayerProps>(
+  ({ source, onPlay, onTimeUpdate, onLoadedMetadata }, ref) => {
+    const audioRef = useRef<HTMLAudioElement | null>(null)
+
+    useImperativeHandle(ref, () => audioRef.current as HTMLAudioElement, [
+      audioRef,
+    ])
+
+    useEffect(() => {
+      if (audioRef.current) {
+        audioRef.current.load() // Reload the audio element when the source changes
+      }
+    }, [source])
+
+    return (
+      <audio
+        ref={audioRef}
+        onPlay={(e) => onPlay && onPlay(e.currentTarget.currentTime)}
+        onTimeUpdate={(e) =>
+          onTimeUpdate &&
+          onTimeUpdate(e.currentTarget.currentTime, e.currentTarget.duration)
+        }
+        onLoadedMetadata={(e) =>
+          onLoadedMetadata && onLoadedMetadata(e.currentTarget.duration)
+        }
+        controls
+      >
+        <source src={source} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    )
+  }
+)
+
+ForwardedAudioPlayer.displayName = 'audioPlayer'
 
 export default Player

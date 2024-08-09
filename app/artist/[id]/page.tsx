@@ -144,6 +144,7 @@ export default async function ArtistPage({
               name={song.name}
               image={song.image[song.image.length - 1].url}
               extra={song.year}
+              source={song.downloadUrl[song.downloadUrl.length - 1].url}
               key={song.name}
             />
           ))}

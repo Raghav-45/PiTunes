@@ -1,6 +1,6 @@
 import MusicCard from '@/components/MusicCard'
 import SectionHeading from '@/components/SectionHeading'
-import { YT_offline } from '@/lib/testdata'
+import { YT_offline, ImagineDragons } from '@/lib/testdata'
 
 const data = {
   pages: [
@@ -131,6 +131,19 @@ export default function Home() {
             name={elem.title}
             artist={elem.views}
             image={elem.thumbnails[elem.thumbnails.length - 1].url}
+            videoId={'elem.videoId'}
+          />
+        ))}
+      </div>
+
+      <SectionHeading name="Imagine Dragons" />
+      <div className="w-full flex flex-wrap mb-8">
+        {ImagineDragons.data.songs.results.map((elem) => (
+          <MusicCard
+            key={elem.title}
+            name={elem.title}
+            artist={elem.primaryArtists}
+            image={elem.image[elem.image.length - 1].url}
             videoId={'elem.videoId'}
           />
         ))}
