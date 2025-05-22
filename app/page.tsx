@@ -100,6 +100,7 @@ export default function Home() {
             artist={elem.artist}
             image={`https://pitunes.vercel.app${elem.src}`}
             videoId={'elem.videoId'}
+            source="" // Since these are sample data entries with no actual source
           />
         ))}
       </div>
@@ -116,6 +117,7 @@ export default function Home() {
             artist={elem.views}
             image={elem.thumbnails[elem.thumbnails.length - 1].url}
             videoId={'elem.videoId'}
+            source={elem.url || ''} // YouTube videos should have a URL
           />
         ))}
       </div>
@@ -132,6 +134,7 @@ export default function Home() {
             artist={elem.views}
             image={elem.thumbnails[elem.thumbnails.length - 1].url}
             videoId={'elem.videoId'}
+            source={elem.url || ''} // YouTube videos should have a URL
           />
         ))}
       </div>
@@ -145,6 +148,7 @@ export default function Home() {
             artist={elem.primaryArtists}
             image={elem.image[elem.image.length - 1].url}
             videoId={'elem.videoId'}
+            source={elem.downloadUrl?.[0]?.url || ''} // Use first download URL if available
           />
         ))}
       </div>
