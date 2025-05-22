@@ -3,6 +3,7 @@
 import { FC } from 'react'
 import { useGenerationStore } from './GenerationStore'
 import { Icons } from './Icons'
+import { cn } from '@/lib/utils'
 
 interface MusicPlayButtonProps {
   name: string
@@ -12,6 +13,7 @@ interface MusicPlayButtonProps {
   songId?: string
   source?: string
   overlay?: boolean
+  videoId?: string // Optional videoId for YouTube integration
 }
 
 const MusicPlayButton: FC<MusicPlayButtonProps> = ({
@@ -22,6 +24,7 @@ const MusicPlayButton: FC<MusicPlayButtonProps> = ({
   songId,
   source,
   overlay,
+  videoId,
 }) => {
   const { setName, setArtist, setImage, setAudioSource } = useGenerationStore()
 
@@ -72,10 +75,15 @@ const MusicPlayButton: FC<MusicPlayButtonProps> = ({
     setArtist(artist)
     setImage(image)
 
-    if (type == 'track') {
+    if (videoId) {
+      // If videoId is provided, use YouTube URL
+      setAudioSource(`https://www.youtube.com/watch?v=${videoId}`)
+    } else if (songId) {
+      // If songId is provided, fetch from Saavn API
       await getAudioSource()
-    } else if (type == 'single') {
-      await getSingleAudioSource()
+    } else if (source) {
+      // Use direct source if provided
+      setAudioSource(source)
     }
   }
   return (
@@ -83,10 +91,15 @@ const MusicPlayButton: FC<MusicPlayButtonProps> = ({
       {!overlay ? (
         (source || songId) && (
           <button
-            className="absolute playButton bg-green-500 rounded-full h-10 w-10 m-2 flex right-0 bottom-0 items-center justify-center transition opacity-0 group-hover:opacity-100 translate-y-7 group-hover:-translate-y-0"
             onClick={handleClick}
+            className={cn(
+              'absolute group-hover:flex right-0 bottom-0 transition-all',
+              overlay
+                ? 'bg-green-500/75 hover:bg-green-500 rounded-full h-9 w-9 m-2 hidden items-center justify-center'
+                : 'bg-green-500 hover:bg-green-400 hover:scale-110 rounded-full h-9 w-9 m-2 hidden items-center justify-center opacity-100'
+            )}
           >
-            <Icons.Play className="text-white text-1xl" />
+            <Icons.Play className="text-white text-sm translate-x-[1.5px]" />
           </button>
         )
       ) : (
