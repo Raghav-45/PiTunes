@@ -2,6 +2,34 @@ import MusicCard from '@/components/MusicCard'
 import SectionHeading from '@/components/SectionHeading'
 import { YT_offline, ImagineDragons } from '@/lib/testdata'
 
+interface Artist {
+  id: string | null
+  name: string
+}
+
+interface Thumbnail {
+  height: number
+  url: string
+  width: number
+}
+
+interface YouTubeItem {
+  artists?: Artist[]
+  playlistId: string
+  thumbnails: Thumbnail[]
+  title: string
+  videoId?: string
+  views?: string
+  browseId?: string
+  isExplicit?: boolean
+  year?: string
+  description?: string
+}
+
+interface YouTubeData {
+  contents: YouTubeItem[]
+}
+
 const data = {
   pages: [
     { id: 'home', name: 'Home', icon: '' },
@@ -99,8 +127,8 @@ export default function Home() {
             name={elem.title}
             artist={elem.artist}
             image={`https://pitunes.vercel.app${elem.src}`}
-            videoId={'elem.videoId'}
-            source="" // Since these are sample data entries with no actual source
+            videoId={''}
+            source={`https://pitunes.vercel.app${elem.src}`} // Using the same path as image for demo
           />
         ))}
       </div>
@@ -110,14 +138,14 @@ export default function Home() {
         extra="Get better recommendations the more you listen."
       />
       <div className="w-full flex flex-wrap mb-8">
-        {YT_offline[2].contents.map((elem) => (
+        {(YT_offline[2] as YouTubeData).contents.map((elem) => (
           <MusicCard
             key={elem.title}
             name={elem.title}
-            artist={elem.views}
+            artist={elem.artists?.[0]?.name || 'Unknown Artist'}
             image={elem.thumbnails[elem.thumbnails.length - 1].url}
-            videoId={'elem.videoId'}
-            source={elem.url || ''} // YouTube videos should have a URL
+            videoId={elem.videoId || ''}
+            source={elem.videoId ? `https://www.youtube.com/watch?v=${elem.videoId}` : ''}
           />
         ))}
       </div>
@@ -127,14 +155,14 @@ export default function Home() {
         extra="Get better recommendations the more you listen."
       />
       <div className="w-full flex flex-wrap mb-8">
-        {YT_offline[2].contents.map((elem) => (
+        {(YT_offline[2] as YouTubeData).contents.map((elem) => (
           <MusicCard
             key={elem.title}
             name={elem.title}
-            artist={elem.views}
+            artist={elem.artists?.[0]?.name || 'Unknown Artist'}
             image={elem.thumbnails[elem.thumbnails.length - 1].url}
-            videoId={'elem.videoId'}
-            source={elem.url || ''} // YouTube videos should have a URL
+            videoId={elem.videoId || ''}
+            source={elem.videoId ? `https://www.youtube.com/watch?v=${elem.videoId}` : ''}
           />
         ))}
       </div>
@@ -147,8 +175,8 @@ export default function Home() {
             name={elem.title}
             artist={elem.primaryArtists}
             image={elem.image[elem.image.length - 1].url}
-            videoId={'elem.videoId'}
-            source={elem.downloadUrl?.[0]?.url || ''} // Use first download URL if available
+            videoId={''}
+            source={elem.url || ''} // Use the URL from the song data
           />
         ))}
       </div>
