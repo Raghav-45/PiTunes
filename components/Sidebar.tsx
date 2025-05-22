@@ -15,6 +15,7 @@ import {
   ShieldAlertIcon,
   SquarePlusIcon,
 } from 'lucide-react'
+import Image from 'next/image'
 
 interface SidebarProps {}
 
@@ -22,10 +23,13 @@ const Sidebar: FC<SidebarProps> = ({}) => {
   return (
     <div className="w-56 bg-gray-100 sticky top-0 dark:bg-black h-full flex-none">
       <div className="p-6">
-        <img
+        <Image
+          width={160}
+          height={40}
           className="h-10"
           alt="Logo"
           src="https://pitunes.vercel.app/assets/Spotify_Logo_RGB_Green.png"
+          priority
         />
       </div>
       <div className="flex flex-col gap-y-5 mx-2">

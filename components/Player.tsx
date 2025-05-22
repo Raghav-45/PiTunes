@@ -1,6 +1,7 @@
 'use client'
 
 import { PictureInPicture2Icon } from 'lucide-react'
+import Image from 'next/image'
 
 import { AiFillHeart } from 'react-icons/ai'
 import { FaPause, FaPlay } from 'react-icons/fa'
@@ -98,9 +99,12 @@ const Player: FC<PlayerProps> = () => {
               image ? 'rounded-lg' : 'rounded-full'
             )}
           >
-            <img
+            <Image
               src={image ?? 'https://sickify-web.vercel.app/icon-192x192.png'}
+              alt={name ?? 'Sickify'}
               className="h-full w-full"
+              width={48}
+              height={48}
             />
             {/* <YTPlayer /> */}
           </div>

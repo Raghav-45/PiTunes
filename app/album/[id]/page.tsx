@@ -8,90 +8,28 @@ interface Image {
   url: string
 }
 
-interface Album {
-  id: string
-  title: string
-  image: Image[]
-  artist: string
-  url: string
-  type: string
-  description: string
-  year: string
-  language: string
-  songIds: string
-}
-
 interface Song {
   id: string
-  title: string
+  name: string
   image: Image[]
-  album: string
-  url: string
-  type: string
-  description: string
-  primaryArtists: string
-  singers: string
-  language: string
+  downloadUrl: {
+    quality: string
+    url: string
+  }[]
+  year: string
 }
 
-interface Artist {
+interface AlbumData {
   id: string
-  title: string
+  name: string
   image: Image[]
-  type: string
-  description: string
-  position: number
-}
-
-interface Playlist {
-  id: string
-  title: string
-  image: Image[]
-  url: string
-  language: string
-  type: string
-  description: string
-}
-
-interface TopQuery {
-  id: string
-  title: string
-  image: Image[]
-  album: string
-  url: string
-  type: string
-  description: string
-  primaryArtists: string
-  singers: string
-  language: string
-}
-
-interface SearchResults {
-  albums: {
-    results: Album[]
-    position: number
-  }
-  songs: {
-    results: Song[]
-    position: number
-  }
-  artists: {
-    results: Artist[]
-    position: number
-  }
-  playlists: {
-    results: Playlist[]
-    position: number
-  }
-  topQuery: {
-    results: TopQuery[]
-    position: number
-  }
+  year: string
+  songs: Song[]
 }
 
 interface ApiResponse {
   success: boolean
-  data: SearchResults
+  data: AlbumData
 }
 
 const getAlbum = async (query: string): Promise<ApiResponse | null> => {
@@ -123,11 +61,14 @@ export default async function AlbumPage({
     <div className="py-3 px-10 shadow-md">
       <div className="flex items-center mb-6">
         <div className="w-64 h-64 relative mr-6">
-          <Image
-            src={data?.data.image[data?.data.image.length - 1].url}
-            className="rounded-lg object-cover"
-            layout="fill"
-          />
+          {data?.data.image && data.data.image.length > 0 && (
+            <Image
+              src={data.data.image[data.data.image.length - 1].url}
+              className="rounded-lg object-cover"
+              layout="fill"
+              alt={`Album artwork for ${data?.data.name || 'album'}`}
+            />
+          )}
         </div>
         <div className="gap-2 flex flex-col">
           <h1 className="text-6xl font-bold">{data?.data.name}</h1>

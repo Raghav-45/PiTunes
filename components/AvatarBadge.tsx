@@ -19,14 +19,13 @@ const AvatarBadge: FC<AvatarBadgeProps> = ({ image, name }) => {
           onClick={() => setShowDropdown(!ShowDropdown)}
           className="flex focus:outline-none bg-gray-100 dark:bg-light rounded-full h-auto py-1 px-1 w-auto items-center"
         >
-          {/* <Image
-            height={36}
-            width={36}
+          <Image
+            height={24}
+            width={24}
             className="h-6 w-6 mr-2 rounded-full"
             src={image}
             alt={name}
-          /> */}
-          <img className="h-6 w-6 mr-2 rounded-full" src={image} alt={name} />
+          />
           <p className="text-gray-900 dark:text-white font-semibold text-xs mr-2">
             {name}
           </p>
