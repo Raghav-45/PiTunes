@@ -125,23 +125,30 @@ export default function Search() {
 
   return (
     <div>
-      <div className="flex-auto h-8 pl-4">
-        <div className="relative h-full w-80">
-          <span className="absolute inset-y-0 left-0 flex items-center">
-            <SearchIcon className="p-1 focus:outline-none text-black focus:shadow-outline w-full h-full" />
-          </span>
+      <div className="flex items-center gap-4">
+        <div className="relative flex-1 max-w-2xl">
           <input
             value={query}
             onChange={(e) => {
               setQuery(e.target.value)
             }}
-            className="shadow appearance-none rounded-full h-full w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="What do you want to listen to?"
+            className="w-full px-12 py-3 bg-neutral-100 dark:bg-neutral-800 rounded-full focus:outline-none"
+          />
+          <SearchIcon
+            size={20}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500"
           />
         </div>
+        <button
+          onClick={handleSearch}
+          className="px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50"
+        >
+          Search
+        </button>
       </div>
-      <button onClick={handleSearch}>Search</button>
+      <div className="pb-8" />
       {data && (
         <div>
           {data.topQuery.results.length > 0 && (
